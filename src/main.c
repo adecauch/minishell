@@ -10,4 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
+int	main(void)
+{
+	printf("let's go minishell!\n");
+	return (0);
+}
