@@ -19,6 +19,7 @@ RESET = \033[0m
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I./inc
+LDLIBS = -lreadline
 
 # Project name
 NAME = minishell
@@ -80,7 +81,7 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(LDLIBS)
 	@echo "$(GREEN)Compilation successful!$(RESET)"
 
 $(OBJ_DIR):
@@ -101,5 +102,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:27:12 by adecauch          #+#    #+#             */
-/*   Updated: 2025/05/27 12:29:41 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:06:32 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 # include "libft.h"
 # include <stdio.h>
+# include <readline/readline.h>
 
 #endif
