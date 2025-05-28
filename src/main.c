@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:50:33 by adecauch          #+#    #+#             */
-/*   Updated: 2025/05/27 20:33:36 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:08:25 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(void)
 			break;
 		}
 		add_history(input);
-		printf("%s\n", input);
 		free(input);
 	}
 	return (0);

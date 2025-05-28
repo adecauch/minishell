@@ -6,10 +6,11 @@
 - Créer l’architecture : Fait
 
 ### Étape 2 — Lecture de la ligne & historique (1–2 jours)
-- Intégrer `readline()` et `add_history()`  
-- Afficher un prompt personnalisé  
+- Intégrer `readline()` et `add_history()` : Fait 
+- Afficher un prompt personnalisé : Fait 
 
 ### Étape 3 — Tokenisation (2–3 jours)
+- Se renseigner sur lexer de bash 
 - Séparer la ligne en tokens : mots, quotes, redirections, pipes  
 - Gérer :  
 - quotes simples (`'…'`) sans expansion  
