@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:27:12 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/04 22:52:43 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/04 23:05:23 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "tokenizer.h"
+# include "stdlib.h"
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
