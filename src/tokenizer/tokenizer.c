@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 22:40:18 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/04 23:51:10 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:04:57 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_token	*new_token(t_token_type type, char *str)
 {
 	t_token	*token;
 
-	malloc(sizeof(t_token));
+	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);
-	head->type = type;
-	head->str = ft_strdup(str);
-	head->next = NULL;
+	token->type = type;
+	token->str = ft_strdup(str);
+	token->next = NULL;
 	return (token);
 }
 
@@ -53,5 +53,19 @@ void	add_token(t_token **head_token, t_token_type type, char *str)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = token;
+	}
+}
+
+void	free_token_list(t_token *head_token)
+{
+	t_token	*tmp;
+
+	while (head_token)
+	{
+		tmp = head_token->next;
+		if (head_token->str)
+			free(head_token->str);
+		free(head_token);
+		head_token = tmp;
 	}
 }
