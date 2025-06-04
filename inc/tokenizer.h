@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 22:37:54 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/04 22:49:15 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:14:05 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ typedef struct s_token
 	t_token_type	type;
 	struct s_token	*next;
 }					t_token;
+
+t_token	*new_token(t_token_type type, char *str);
+void	add_token(t_token **head_token, t_token_type type, char *str);
+void	free_token_list(t_token *head_token);
 
 #endif

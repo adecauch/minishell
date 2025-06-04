@@ -6,9 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 00:07:35 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/05 00:07:48 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 00:11:26 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/minishell.h"
 
 t_token	*new_token(t_token_type type, char *str)
 {
