@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 22:40:18 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/05 00:11:29 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 01:45:13 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,41 @@
 
 t_token	*tokenizer(char *line)
 {
-	t_token *head_token;
+	t_token	*head_token;
+	int		i;
 
-	head = NULL;
-	while (*str)
+	i = 0;
+	head_token = NULL;
+	while (line[i])
 	{
-		
-		str++;
+		if (ft_isspace(line[i]))
+			i++;
+		else if (line[i] == '|')
+			add(&i, &head_token, T_PIPE, "|");
+		else if (line[i] == '>' && line[i + 1] == '>')
+			add(&i, &head_token, T_APPEND, ">>");
+		else if (line[i] == '>')
+			add(&i, &head_token, T_OUT, ">");
+		else if (line[i] == '<' && line[i + 1] == '<')
+			add(&i, &head_token, T_HEREDOC, "<<");
+		else if (line[i] == '<')
+			add(&i, &head_token, T_IN, "<");
+		else if (line[i] == '\'' || line[i] == '"')
+			add_token(&head_token, T_WORD, parse_quote(line, &i));
+		else
+			add_token(&head_token, T_WORD, parse_word(line, &i));
 	}
+	return (head_token);
 }
 
+int	main(void)
+{
+	t_token *head_token = tokenizer("cat file1 > "file2"");
+
+	while (head_token)
+	{
+		printf("%s\n", head_token->str);
+		head_token = head_token->next;
+	}
+		free_token_list(head_token);
+}

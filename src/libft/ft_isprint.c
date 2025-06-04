@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:41:59 by adecauch          #+#    #+#             */
-/*   Updated: 2024/10/27 02:53:27 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 01:54:01 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/libft.h"
 
 int	ft_isprint(int c)
 {
