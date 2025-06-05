@@ -6,13 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:50:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/05 01:52:15 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 02:18:38 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-int	ft_isspace(char c)
+int	ft_isspace(int c)
 {
 	return (c == ' ');
 }

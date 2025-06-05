@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:11:48 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/05 01:37:22 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/05 02:23:04 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*parse_word(char *line, int *i)
 	return (ft_substr(line, start, *i - start));
 }
 
-char	*parse_quote(char *line)
+char	*parse_quote(char *line, int *i)
 {
 	char	quote;
 	int		start;
@@ -50,12 +50,12 @@ void	add(int *i, t_token **head_token, t_token_type type, char *str)
 {
 	if (type == T_PIPE || type == T_OUT || type == T_IN)
 	{
-		add_token(&head_token, type, str);
+		add_token(head_token, type, str);
 		(*i)++;
 	}
 	else
 	{
-		add_token(&head_token, type, str);
+		add_token(head_token, type, str);
 		(*i) += 2;
 	}
 }
