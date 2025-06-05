@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "../../inc/libft.h"
 
 char	*ft_strnstr(const char *str, const char *find, size_t n)
 {
