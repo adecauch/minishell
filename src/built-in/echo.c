@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:16:34 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/09 21:30:42 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/09 21:47:11 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	builtin_echo(char **argv)
 		printf("\n");
 	return (0);
 }
-
+/*
 int	main(void)
 {
 	char *test[] = {
@@ -59,5 +59,5 @@ int	main(void)
 	};
 	builtin_echo(test);
 }
-
+*/
 //ccf src/built-in/echo.c -o echo

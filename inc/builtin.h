@@ -6,11 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:14:12 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/09 20:16:19 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/09 21:45:46 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_H
 # define BUILTIN_H
+
+int	builtin_echo(char **argv);
 
 #endif
