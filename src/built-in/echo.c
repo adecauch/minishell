@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:16:34 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/09 21:07:23 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/09 21:30:42 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 bool	check_flag(char *flag)
 {
-	if (flag[0] == '-' && flag[1] == 'n' && !flag[2])
-		return (1);
-	return (0);
+	int	i;
+
+	i = 2;
+	if (!flag || flag[0] != '-' || flag[1] != 'n')
+		return (0);
+	while (flag[i])
+	{
+		if (flag[i] != 'n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	builtin_echo(char **argv)
@@ -24,7 +33,7 @@ int	builtin_echo(char **argv)
 	int	i;
 
 	i = 1;
-	if (check_flag(argv[1]))
+	while (argv[i] && check_flag(argv[i]))
 		i++;
 	while (argv[i])
 	{
@@ -43,10 +52,12 @@ int	main(void)
 	char *test[] = {
 		"echo",
 		"-n",
-		"sqlut",
-		"sqsqs",
-		"dqwdwqd",
+		"-nnnnnnnn",
+		"test",
+		"test",
 		NULL
 	};
 	builtin_echo(test);
 }
+
+//ccf src/built-in/echo.c -o echo
