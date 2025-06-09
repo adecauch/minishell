@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:16:34 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/09 20:56:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/09 21:07:23 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	builtin_echo(char **argv)
 			printf(" ");
 		i++;
 	}
-	if (check_flag(argv[1]))
+	if (!check_flag(argv[1]))
 		printf("\n");
 	return (0);
 }
@@ -42,6 +42,7 @@ int	main(void)
 {
 	char *test[] = {
 		"echo",
+		"-n",
 		"sqlut",
 		"sqsqs",
 		"dqwdwqd",
