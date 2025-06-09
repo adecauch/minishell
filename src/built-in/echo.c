@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 20:16:34 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/09 21:47:11 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/09 22:00:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ bool	check_flag(char *flag)
 	return (1);
 }
 
-int	builtin_echo(char **argv)
+int	builtin_echo(char **args)
 {
 	int	i;
 
 	i = 1;
-	while (argv[i] && check_flag(argv[i]))
+	while (args[i] && check_flag(args[i]))
 		i++;
-	while (argv[i])
+	while (args[i])
 	{
-		printf("%s", argv[i]);
-		if (argv[i + 1])
+		printf("%s", args[i]);
+		if (args[i + 1])
 			printf(" ");
 		i++;
 	}
-	if (!check_flag(argv[1]))
+	if (!check_flag(args[1]))
 		printf("\n");
 	return (0);
 }
