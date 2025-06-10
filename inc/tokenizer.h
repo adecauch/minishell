@@ -35,6 +35,7 @@ typedef struct s_token
 t_token	*new_token(t_token_type type, char *str);
 void	add_token(t_token **head_token, t_token_type type, char *str);
 void	free_token_list(t_token *head_token);
+void	print_token_list(t_token *head_token);
 
 /*----tokenizer_utility.c-----*/
 int		isspecial(char c);

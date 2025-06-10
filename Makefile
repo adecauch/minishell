@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/05/27 11:51:18 by adecauch         ###   ########.fr        #
+#    Updated: 2025/06/10 04:30:52 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = src/main.c \
       src/libft/ft_isascii.c \
       src/libft/ft_isdigit.c \
       src/libft/ft_isprint.c \
+      src/libft/ft_isspace.c \
       src/libft/ft_itoa.c \
       src/libft/ft_lstadd_back_bonus.c \
       src/libft/ft_lstadd_front_bonus.c \
@@ -72,7 +73,10 @@ SRC = src/main.c \
       src/libft/ft_strtrim.c \
       src/libft/ft_substr.c \
       src/libft/ft_tolower.c \
-      src/libft/ft_toupper.c
+      src/libft/ft_toupper.c \
+	  src/tokenizer/tokenizer.c \
+	  src/tokenizer/token.c \
+	  src/tokenizer/tokenizer_utility.c
 
 # Object files
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 22:40:18 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/05 02:27:36 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/10 04:58:09 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,3 @@ t_token	*tokenizer(char *line)
 	}
 	return (head_token);
 }
-/*
-int	main(void)
-{
-	t_token *head_token = tokenizer("cat file1 > file2");
-
-	while (head_token)
-	{
-		printf("%s\n", head_token->str);
-		head_token = head_token->next;
-	}
-		free_token_list(head_token);
-}
-*/
-//ccf src/tokenizer/tokenizer.c src/tokenizer/tokenizer_utility.c src/tokenizer/token.c src/libft/ft_isspace.c src/libft/ft_substr.c src/libft/ft_strlen.c src/libft/ft_strdup.c -o tokenizer
