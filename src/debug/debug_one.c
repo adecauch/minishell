@@ -6,13 +6,12 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 03:54:06 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/11 03:55:59 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/11 03:59:33 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
- 
 void	print_token_list(t_token *head_token)
 {
 	while (head_token)
