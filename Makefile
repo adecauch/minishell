@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/06/10 04:30:52 by adecauch         ###   ########.fr        #
+#    Updated: 2025/06/11 03:56:41 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,8 @@ SRC = src/main.c \
       src/libft/ft_toupper.c \
 	  src/tokenizer/tokenizer.c \
 	  src/tokenizer/token.c \
-	  src/tokenizer/tokenizer_utility.c
+	  src/tokenizer/tokenizer_utility.c \
+	  src/debug/debug_one.c
 
 # Object files
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
