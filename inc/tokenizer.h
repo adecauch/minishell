@@ -22,7 +22,9 @@ typedef enum e_token_type
 	T_IN,
 	T_OUT,
 	T_APPEND,
-	T_HEREDOC
+	T_HEREDOC,
+	T_AND,
+	T_SEMICOLON
 }	t_token_type;
 
 typedef struct s_token

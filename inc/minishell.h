@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "tokenizer.h"
+# include "parsing.h"
 # include "debug.h"
 # include <stdio.h>
 # include <readline/readline.h>

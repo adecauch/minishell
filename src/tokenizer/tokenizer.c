@@ -33,6 +33,10 @@ t_token	*tokenizer(char *line)
 			add(&i, &head_token, T_HEREDOC, "<<");
 		else if (line[i] == '<')
 			add(&i, &head_token, T_IN, "<");
+		else if (line[i] == '&' && line[i + 1] == '&')
+			add(&i, &head_token, T_AND, "&&");
+		else if (line[i] == ';')
+			add(&i, &head_token, T_SEMICOLON, ";");
 		else if (line[i] == '\'' || line[i] == '"')
 			add_token(&head_token, T_WORD, parse_quote(line, &i));
 		else
