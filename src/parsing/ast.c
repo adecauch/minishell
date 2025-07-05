@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 04:00:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/11 04:00:00 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:29:59 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_ast	*ast_new(t_ast_type type)
 	return (node);
 }
 
-static void	add_arg_to_array(t_ast *node, char *arg)
+void	add_arg_to_array(t_ast *node, char *arg)
 {
 	int		i;
 	char	**new_args;
