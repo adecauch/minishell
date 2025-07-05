@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 03:54:06 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/11 03:59:33 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/24 03:36:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,31 @@ void	print_token_list(t_token *head_token)
 		printf("%s\n", head_token->str);
 		head_token = head_token->next;
 	}
+}
+
+void	print_ast(t_ast *root)
+{
+	int	i;
+
+	if (!root)
+		return ;
+	if (root->type == AST_COMMAND)
+	{
+		printf("COMMAND: ");
+		if (root->args && root->args[0])
+			printf("%s\n", root->args[0]);
+		i = 0;
+		while (root->args[i])
+		{
+			printf("  ARG: %s\n", root->args[i]);
+			i++;
+		}
+	}
+	else if (root->type == AST_REDIRECTION)
+	{
+		printf("REDIRECTION: ");
+		if (root->redir_file)
+			printf("%s\n", root->redir_file);
+	}
+	print_ast(root->next);
 }

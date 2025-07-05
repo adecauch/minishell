@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/06/11 03:56:41 by adecauch         ###   ########.fr        #
+#    Updated: 2025/06/24 03:35:33 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC = src/main.c \
 	src/tokenizer/token.c \
 	src/tokenizer/tokenizer_utility.c \
 	src/parsing/parsing.c \
+	src/parsing/parsing_utils.c \
 	src/parsing/ast.c \
 	src/debug/debug_one.c
 

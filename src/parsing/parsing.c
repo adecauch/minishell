@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,147 +12,63 @@
 
 #include "../../inc/minishell.h"
 
-static t_token	*skip_token(t_token **tokens)
+t_ast	*parse_command(t_token **tokens)
 {
+	t_ast	*node;
 	t_token	*current;
 
 	if (!tokens || !*tokens)
 		return (NULL);
-	current = *tokens;
-	*tokens = (*tokens)->next;
-	return (current);
-}
-
-static int	is_redirection(t_token_type type)
-{
-	return (type == T_IN || type == T_OUT ||
-			type == T_APPEND || type == T_HEREDOC);
-}
-
-t_ast	*parse_redirection(t_token **tokens)
-{
-	t_ast	*node;
-	t_token	*redir_token;
-	t_token	*file_token;
-
-	if (!tokens || !*tokens || !is_redirection((*tokens)->type))
-		return (NULL);
-	node = ast_new(AST_REDIRECTION);
+	node = ast_new(AST_COMMAND);
 	if (!node)
 		return (NULL);
-	redir_token = skip_token(tokens);
-	if (!redir_token)
+	while (*tokens && (*tokens)->type == T_WORD)
 	{
-		free_ast(node);
+		current = skip_token(tokens);
+		if (current)
+			ast_add_arg(node, current->str);
+	}
+	return (node);
+}
+
+static t_ast	*process_token(t_token **tokens)
+{
+	t_ast	*new_node;
+
+	if ((*tokens)->type == T_WORD)
+	{
+		new_node = parse_command(tokens);
+		if (!new_node)
+			return (NULL);
+	}
+	else if (is_redirection((*tokens)->type))
+	{
+		new_node = create_redirection_node(tokens);
+		if (!new_node)
+			return (NULL);
+	}
+	else if ((*tokens)->type == T_PIPE)
+	{
+		skip_token(tokens);
 		return (NULL);
 	}
-	if (redir_token->type == T_IN)
-		node->redir_fd = 0;
 	else
-		node->redir_fd = 1;
-	file_token = skip_token(tokens);
-	if (!file_token || file_token->type != T_WORD)
-	{
-		free_ast(node);
 		return (NULL);
-	}
-	node->redir_file = ft_strdup(file_token->str);
-	return (node);
-}
-
-t_ast	*parse_simple_command(t_token **tokens)
-{
-	t_ast	*node;
-	t_ast	*redir_node;
-	t_token	*current;
-
-	if (!tokens || !*tokens)
-		return (NULL);
-	node = ast_new(AST_SIMPLE_COMMAND);
-	if (!node)
-		return (NULL);
-	while (*tokens && ((*tokens)->type == T_WORD || is_redirection((*tokens)->type)))
-	{
-		if ((*tokens)->type == T_WORD)
-		{
-			current = skip_token(tokens);
-			if (current)
-				ast_add_arg(node, current->str);
-		}
-		else if (is_redirection((*tokens)->type))
-		{
-			redir_node = parse_redirection(tokens);
-			if (redir_node)
-			{
-				redir_node->left = node;
-				node = redir_node;
-			}
-		}
-	}
-	return (node);
-}
-
-t_ast	*parse_pipeline(t_token **tokens)
-{
-	t_ast	*left;
-	t_ast	*node;
-	t_token	*pipe_token;
-
-	left = parse_simple_command(tokens);
-	if (!left)
-		return (NULL);
-	while (*tokens && (*tokens)->type == T_PIPE)
-	{
-		pipe_token = skip_token(tokens);
-		if (!pipe_token)
-			break ;
-		node = ast_new(AST_PIPELINE);
-		if (!node)
-		{
-			free_ast(left);
-			return (NULL);
-		}
-		node->left = left;
-		node->right = parse_simple_command(tokens);
-		if (!node->right)
-		{
-			free_ast(node);
-			return (left);
-		}
-		left = node;
-	}
-	return (left);
-}
-
-t_ast	*parse_sequence(t_token **tokens)
-{
-	t_ast	*left;
-	t_ast	*node;
-
-	left = parse_pipeline(tokens);
-	if (!left)
-		return (NULL);
-	while (*tokens)
-	{
-		node = ast_new(AST_SEQUENCE);
-		if (!node)
-		{
-			free_ast(left);
-			return (NULL);
-		}
-		node->left = left;
-		node->right = parse_pipeline(tokens);
-		if (!node->right)
-		{
-			free_ast(node);
-			return (left);
-		}
-		left = node;
-	}
-	return (left);
+	return (new_node);
 }
 
 t_ast	*parse(t_token *tokens)
 {
-	return (parse_sequence(&tokens));
+	t_ast	*head;
+	t_ast	*new_node;
+
+	head = NULL;
+	while (tokens)
+	{
+		new_node = process_token(&tokens);
+		if (!new_node)
+			continue ;
+		add_to_list(&head, new_node);
+	}
+	return (head);
 }

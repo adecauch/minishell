@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:50:33 by adecauch          #+#    #+#             */
-/*   Updated: 2025/06/11 04:00:00 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/06/24 03:34:05 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(void)
 		tokens = tokenizer(input);
 		root = parse(tokens);
 		free_token_list(tokens);
-		ast_print(root, 0);
+		print_ast(root);
 		exec_ast(root, NULL);
 		free_ast(root);
 		add_history(input);
