@@ -20,8 +20,8 @@ t_ast	*ast_new(t_ast_type type)
 	if (!node)
 		return (NULL);
 	node->type = type;
-	node->args = ft_calloc(1, sizeof(char *));
-	if (!node->args)
+	node->cmd = ft_calloc(1, sizeof(char *));
+	if (!node->cmd)
 	{
 		free(node);
 		return (NULL);
@@ -29,26 +29,26 @@ t_ast	*ast_new(t_ast_type type)
 	return (node);
 }
 
-void	add_arg_to_array(t_ast *node, char *arg)
+static void	add_arg_to_array(t_ast *node, char *arg)
 {
 	int		i;
-	char	**new_args;
+	char	**new_cmd;
 
 	i = 0;
-	while (node->args[i])
+	while (node->cmd[i])
 		i++;
-	new_args = ft_calloc(i + 2, sizeof(char *));
-	if (!new_args)
+	new_cmd = ft_calloc(i + 2, sizeof(char *));
+	if (!new_cmd)
 		return ;
 	i = 0;
-	while (node->args[i])
+	while (node->cmd[i])
 	{
-		new_args[i] = node->args[i];
+		new_cmd[i] = node->cmd[i];
 		i++;
 	}
-	new_args[i] = arg;
-	free(node->args);
-	node->args = new_args;
+	new_cmd[i] = arg;
+	free(node->cmd);
+	node->cmd = new_cmd;
 }
 
 void	ast_add_arg(t_ast *node, char *arg)
@@ -65,15 +65,15 @@ void	free_ast(t_ast *root)
 	if (!root)
 		return ;
 	free_ast(root->next);
-	if (root->args)
+	if (root->cmd)
 	{
 		i = 0;
-		while (root->args[i])
+		while (root->cmd[i])
 		{
-			free(root->args[i]);
+			free(root->cmd[i]);
 			i++;
 		}
-		free(root->args);
+		free(root->cmd);
 	}
 	if (root->redir_file)
 		free(root->redir_file);

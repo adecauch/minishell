@@ -68,7 +68,7 @@ t_ast	*parse(t_token *tokens)
 		new_node = process_token(&tokens);
 		if (!new_node)
 			continue ;
-		add_to_list(&head, new_node);
+		add_to_ast(&head, new_node);
 	}
 	return (head);
 }

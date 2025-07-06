@@ -42,12 +42,12 @@ void	print_ast(t_ast *root)
 	if (root->type == AST_COMMAND)
 	{
 		printf("COMMAND: ");
-		if (root->args && root->args[0])
-			printf("%s\n", root->args[0]);
-		i = 0;
-		while (root->args[i])
+		if (root->cmd && root->cmd[0])
+			printf("%s\n", root->cmd[0]);
+		i = 1;
+		while (root->cmd[i])
 		{
-			printf("  ARG: %s\n", root->args[i]);
+			printf("  ARG: %s\n", root->cmd[i]);
 			i++;
 		}
 	}
