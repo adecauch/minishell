@@ -46,4 +46,9 @@ t_ast	*ast_new(t_ast_type type);
 void	ast_add_arg(t_ast *node, char *arg);
 void	free_ast(t_ast *root);
 
+/*-----expansion.c-----*/
+
+void	expand_ast_variables(t_ast *root, char **envp);
+char	*expand_word(const char *word, char **envp);
+
 #endif

@@ -79,6 +79,7 @@ SRC = src/main.c \
 	src/tokenizer/tokenizer_utility.c \
 	src/parsing/parsing.c \
 	src/parsing/parsing_utils.c \
+	src/parsing/expansion.c \
 	src/parsing/ast.c \
 	src/debug/debug_one.c
 

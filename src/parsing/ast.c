@@ -29,7 +29,7 @@ t_ast	*ast_new(t_ast_type type)
 	return (node);
 }
 
-static void	add_arg_to_array(t_ast *node, char *arg)
+void	add_arg_to_array(t_ast *node, char *arg)
 {
 	int		i;
 	char	**new_cmd;

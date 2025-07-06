@@ -14,9 +14,8 @@
 
 int	isspecial(char c)
 {
-	if (c == '|' || c == '<' || c == '>' || c == '&')
-		return (1);
-	if (c == ';' || c == '\'' || c == '"' || c == '\0')
+	if (c == '|' || c == '<' || c == '>' || c == '&'
+		|| c == ';' || c == '\\' || c == '\'' || c == '"' || c == '\0')
 		return (1);
 	return (0);
 }
@@ -41,7 +40,12 @@ char	*parse_quote(char *line, int *i)
 	(*i)++;
 	start = *i;
 	while (line[*i] && line[*i] != quote)
-		(*i)++;
+	{
+		if (quote == '"' && line[*i] == '$')
+			(*i)++;
+		else
+			(*i)++;
+	}
 	str = ft_substr(line, start, *i - start);
 	if (line[*i] == quote)
 		(*i)++;
@@ -59,5 +63,15 @@ void	add(int *i, t_token **head_token, t_token_type type, char *str)
 	{
 		add_token(head_token, type, str);
 		(*i) += 2;
+	}
+}
+
+void	free_tokenizer_result(t_tokr *result)
+{
+	if (result)
+	{
+		free_token_list(result->tokens);
+		free(result->error_msg);
+		free(result);
 	}
 }

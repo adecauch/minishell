@@ -22,9 +22,7 @@ typedef enum e_token_type
 	T_IN,
 	T_OUT,
 	T_APPEND,
-	T_HEREDOC,
-	T_AND,
-	T_SEMICOLON
+	T_HEREDOC
 }	t_token_type;
 
 typedef struct s_token
@@ -32,21 +30,27 @@ typedef struct s_token
 	char			*str;
 	t_token_type	type;
 	struct s_token	*next;
-}					t_token;
+}	t_token;
+
+typedef struct s_tokr
+{
+	t_token	*tokens;
+	char	*error_msg;
+}	t_tokr;
 
 t_token	*new_token(t_token_type type, char *str);
 void	add_token(t_token **head_token, t_token_type type, char *str);
 void	free_token_list(t_token *head_token);
-void	print_token_list(t_token *head_token);
 
 /*----tokenizer_utility.c-----*/
 int		isspecial(char c);
 char	*parse_word(char *line, int *i);
 char	*parse_quote(char *line, int *i);
 void	add(int *i, t_token **head_token, t_token_type type, char *str);
+void	free_tokenizer_result(t_tokr *result);
 
 /*-----tokenizer.c-----*/
 
-t_token	*tokenizer(char *line);
+t_tokr	*tokenizer(char *line);
 
 #endif

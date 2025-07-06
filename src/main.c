@@ -12,20 +12,58 @@
 
 #include "../inc/minishell.h"
 
-static void	exec_ast(t_ast *root, char **envp)
+void	exec_ast(t_ast *root, char **envp)
 {
 	(void)root;
 	(void)envp;
-	// TODO: Implement AST execution
-	ft_putstr_fd("AST execution not yet implemented\n", 1);
+	printf("AST plus qu'a faire l'ast\n");
 }
 
-int	main(void)
+void	handle_tokenizer_error(t_tokr *tokenizer_result, char *input)
+{
+	printf("minishell: syntax error near unexpected token `%s'\n",
+		tokenizer_result->error_msg);
+	free_tokenizer_result(tokenizer_result);
+	add_history(input);
+	free(input);
+}
+
+void	process_input(char *input, char **envp)
+{
+	t_tokr *tokenizer_result;
+	t_ast *root;
+
+	tokenizer_result = tokenizer(input);
+	if (!tokenizer_result)
+	{
+		add_history(input);
+		free(input);
+		return ;
+	}
+	if (tokenizer_result->error_msg)
+	{
+		handle_tokenizer_error(tokenizer_result, input);
+		return ;
+	}
+	root = parse(tokenizer_result->tokens);
+	free_tokenizer_result(tokenizer_result);
+	if (root)
+	{
+		expand_ast_variables(root, envp);
+		print_ast(root);
+		exec_ast(root, envp);
+		free_ast(root);
+	}
+	add_history(input);
+	free(input);
+}
+
+int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
-	t_token	*tokens;
-	t_ast	*root;
 
+	(void)argc;
+	(void)argv;
 	while (1)
 	{
 		input = readline("minishell> ");
@@ -34,14 +72,7 @@ int	main(void)
 			ft_putstr_fd("exit\n", 1);
 			break ;
 		}
-		tokens = tokenizer(input);
-		root = parse(tokens);
-		free_token_list(tokens);
-		print_ast(root);
-		exec_ast(root, NULL);
-		free_ast(root);
-		add_history(input);
-		free(input);
+		process_input(input, envp);
 	}
 	return (0);
 }
