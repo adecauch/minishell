@@ -39,6 +39,7 @@ void	add_to_ast(t_ast **head, t_ast *new_node);
 t_token	*skip_token(t_token **tokens);
 int		is_redirection(t_token_type type);
 t_ast	*create_redirection_node(t_token **tokens);
+int		check_pipe_syntax(t_token *tokens);
 
 /*-----ast.c-----*/
 

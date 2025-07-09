@@ -63,3 +63,25 @@ void	add_to_ast(t_ast **head, t_ast *new_node)
 		current->next = new_node;
 	}
 }
+
+int	check_pipe_syntax(t_token *tokens)
+{
+	t_token	*prev;
+
+	if (!tokens)
+		return (0);
+	if (tokens->type == T_PIPE)
+		return (1);
+	prev = tokens;
+	tokens = tokens->next;
+	while (tokens)
+	{
+		if (prev->type == T_PIPE && tokens->type == T_PIPE)
+			return (1);
+		prev = tokens;
+		tokens = tokens->next;
+	}
+	if (prev->type == T_PIPE)
+		return (1);
+	return (0);
+}

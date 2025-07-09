@@ -45,6 +45,15 @@ void	process_input(char *input, char **envp)
 		handle_tokenizer_error(tokenizer_result, input);
 		return ;
 	}
+	if (check_pipe_syntax(tokenizer_result->tokens))
+	{
+		printf("minishell: syntax error near unexpected token `|'");
+		printf("\n");
+		free_tokenizer_result(tokenizer_result);
+		add_history(input);
+		free(input);
+		return ;
+	}
 	root = parse(tokenizer_result->tokens);
 	free_tokenizer_result(tokenizer_result);
 	if (root)
