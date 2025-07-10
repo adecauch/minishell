@@ -6,17 +6,23 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/10 21:29:30 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/10 21:49:24 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+void	process_input(char *input, char **envp)
+{
+	(void)input;
+	(void)envp;
+	printf("tokenizer\n");
+}
+
 int	minishell(char **envp)
 {
 	char	*input;
 
-	(void)envp;
 	while (1)
 	{
 		input = readline("minishell> ");
@@ -25,8 +31,9 @@ int	minishell(char **envp)
 			printf("\nexit\n");
 			break ;
 		}
-		else
+		if (*input)
 			add_history(input);
+		process_input(input, envp);
 		free(input);
 	}
 	return (0);
