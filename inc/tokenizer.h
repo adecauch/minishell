@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/11 15:55:41 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:11:21 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	free_token_list(t_token	*head);
 
 /*-----tokenizer_utility-----*/
 
-bool	check_closed_quotes(char *input);
+bool	check_unclosed_quotes(char *input);
 
 #endif

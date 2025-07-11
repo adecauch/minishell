@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/11 15:42:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:11:21 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	process_input(char *input, char **envp)
 {
-	if (check_closed_quotes(input))
+	if (check_unclosed_quotes(input))
 	{
 		printf("minishell: unexpected E0F while looking for matching quote\n");
 		return ;
