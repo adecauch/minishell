@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/06/24 03:35:33 by adecauch         ###   ########.fr        #
+#    Updated: 2025/07/11 15:46:22 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ OBJ_DIR = obj
 
 # Source files
 SRC = src/main.c \
-	  src/minishell.c
-
+	  src/minishell.c \
+	  src/parsing/tokenizer_utility.c
 # Object files
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
