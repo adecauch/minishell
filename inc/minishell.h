@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/11 15:50:20 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:48:35 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <string.h>
+# include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "libft.h"
 # include "tokenizer.h"
 
 int	minishell(char **envp);
