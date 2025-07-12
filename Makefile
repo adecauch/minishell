@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/07/12 12:46:37 by adecauch         ###   ########.fr        #
+#    Updated: 2025/07/12 17:20:45 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,16 @@ OBJ_DIR = obj
 SRC = src/main.c \
 	  src/minishell.c \
 	  src/parsing/token.c \
-	  src/parsing/tokkenizer.c \
+	  src/parsing/tokenizer.c \
 	  src/parsing/tokenizer_utility.c \
+	  src/libft/ft_isdigit.c \
+	  src/libft/ft_isalpha.c \
 	  src/libft/ft_isalnum.c \
 	  src/libft/ft_isspace.c \
+	  src/libft/ft_strlen.c \
 	  src/libft/ft_strdup.c \
-	  src/libft/ft_substr.c
+	  src/libft/ft_substr.c \
+	  src/debug/debug.c
 
 # Object files
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

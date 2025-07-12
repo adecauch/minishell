@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:14:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 16:07:10 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/12 17:08:56 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_token	*new_token(char *str, t_token_type type)
 {
-	t_token	token;
+	t_token	*token;
 
 	token = malloc(sizeof(t_token));
 	if (!token)

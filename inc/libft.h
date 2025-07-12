@@ -6,12 +6,15 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:15:52 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 12:40:45 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/12 17:17:27 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stddef.h>
+# include <stdlib.h>
 
 //void	ft_putchar_fd(char c, int fd);
 //void	ft_putstr_fd(char *s, int fd);
@@ -34,8 +37,8 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 //char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 //char	*ft_itoa(int n);
 //char	**ft_split(const char *s1, char c);
-//int		ft_isalpha(int c);
-//int		ft_isdigit(int c);
+int		ft_isalpha(int c);
+int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 //int		ft_isascii(int c);
 //int		ft_isprint(int c);
