@@ -6,13 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:14:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 00:31:38 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/12 16:07:10 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_token	*new_token(char *str, t_token_type type, bool expand)
+t_token	*new_token(char *str, t_token_type type)
 {
 	t_token	token;
 
@@ -20,18 +20,17 @@ t_token	*new_token(char *str, t_token_type type, bool expand)
 	if (!token)
 		return (NULL);
 	token->str = ft_strdup(str);
-	token->expand = expand;
 	token->type = type;
 	token->next = NULL;
 	return (token);
 }
 
-void	add_token(char *str, t_token_type type, bool expand, t_token **head)
+void	add_token(char *str, t_token_type type, t_token **head)
 {
 	t_token	*token;
 	t_token	*tmp;
 
-	token = new_token(str, type, expand);
+	token = new_token(str, type);
 	if (!token)
 		return ;
 	if (!*head)

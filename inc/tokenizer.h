@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 00:31:38 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/12 16:36:48 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 typedef enum e_token_type
 {
 	T_WORD,
+	T_SQWORD,
+	T_DQWORD,
 	T_PIPE,
 	T_IN,
 	T_OUT,
@@ -28,20 +30,26 @@ typedef struct s_token
 {
 	char			*str;
 	t_token_type	type;
-	bool			expand;
 	struct s_token	*next;
 }	t_token;
 
 /*-----token.c-----*/
 
-t_token	*new_token(char *str, t_token_type type, bool expand);
-void	add_token(char *str, t_token_type type, bool expand, t_token **head);
+t_token	*new_token(char *str, t_token_type type);
+void	add_token(char *str, t_token_type type, t_token **head);
 void	free_token_list(t_token	*head);
 
-/*-----tokenizer-----*/ 
+/*-----tokenizer.c-----*/ 
 
-/*-----tokenizer_utility-----*/
+t_token	*tokenizer(char *input);
+void	handle_token(char *input, int *i, t_token **head);
+
+/*-----tokenizer_utility.c-----*/
 
 bool	check_unclosed_quotes(char *input);
+bool	isredir(char c);
+char	*parse_word(char *input, int *i);
+char	*parse_squotes(char *input, int *i);
+char	*parse_dquotes(char *input, int *i);
 
 #endif
