@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 16:36:48 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:23:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_token	*new_token(char *str, t_token_type type);
 void	add_token(char *str, t_token_type type, t_token **head);
 void	free_token_list(t_token	*head);
 
-/*-----tokenizer.c-----*/ 
+/*-----tokenizer.c-----*/
 
 t_token	*tokenizer(char *input);
 void	handle_token(char *input, int *i, t_token **head);
