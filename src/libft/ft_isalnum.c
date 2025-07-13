@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:37:01 by adecauch          #+#    #+#             */
-/*   Updated: 2024/10/27 02:37:29 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:17:16 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
 int	ft_isalnum(int c)
 {

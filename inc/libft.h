@@ -6,15 +6,12 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:15:52 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 17:17:27 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:20:07 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# include <stddef.h>
-# include <stdlib.h>
 
 //void	ft_putchar_fd(char c, int fd);
 //void	ft_putstr_fd(char *s, int fd);

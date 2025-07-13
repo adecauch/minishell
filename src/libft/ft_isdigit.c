@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:32:03 by adecauch          #+#    #+#             */
-/*   Updated: 2024/10/27 02:32:55 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:18:03 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
 int	ft_isdigit(int c)
 {

@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:43:07 by adecauch          #+#    #+#             */
-/*   Updated: 2024/11/23 00:38:37 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:18:51 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
 size_t	ft_strlen(const char *str)
 {

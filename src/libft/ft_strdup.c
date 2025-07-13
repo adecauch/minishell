@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 04:55:27 by adecauch          #+#    #+#             */
-/*   Updated: 2024/11/15 05:01:57 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:18:40 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/libft.h"
+#include "../../inc/minishell.h"
 
 char	*ft_strcpy(char	*dst, const char *src)
 {
