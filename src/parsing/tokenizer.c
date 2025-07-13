@@ -6,25 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:44:31 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:53:17 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-void	add_redir_token(char *str, t_token_type type, t_token **head, int *i)
-{
-	if (type == T_PIPE || type == T_IN || type == T_OUT)
-	{
-		add_token(str, type, head);
-		(*i)++;
-	}
-	else
-	{
-		add_token(str, type, head);
-		*i += 2;
-	}
-}
 
 void	handle_token(char *input, int *i, t_token **head)
 {

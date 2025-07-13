@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:14:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 17:08:56 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 15:52:46 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ void	add_token(char *str, t_token_type type, t_token **head)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = token;
+	}
+}
+
+void	add_redir_token(char *str, t_token_type type, t_token **head, int *i)
+{
+	if (type == T_PIPE || type == T_IN || type == T_OUT)
+	{
+		add_token(str, type, head);
+		(*i)++;
+	}
+	else
+	{
+		add_token(str, type, head);
+		*i += 2;
 	}
 }
 
