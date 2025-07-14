@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:24:00 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 18:09:28 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	process_input(char *input, char **envp)
 {
 	t_token	*head;
 
+	(void)envp;
 	if (check_unclosed_quotes(input))
 	{
 		printf("minishell: unexpected EOF while looking for matching quote\n");
 		return ;
 	}
 	head = tokenizer(input);
-	(void)envp;
-	print_token_list(head);
+	validate_token_list(head);
+	if (!check_token_list(head))
+		print_token_list(head);
+	free_token_list(head);
 }
 
 int	minishell(char **envp)

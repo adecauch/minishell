@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 17:23:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:57:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	print_token_list(t_token *head)
 {
+	if (!head)
+		return ;
 	while (head)
 	{
 		if (head->type == T_WORD)

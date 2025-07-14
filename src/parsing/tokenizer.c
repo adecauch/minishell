@@ -6,11 +6,69 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:53:17 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:52:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	validate_token_list(t_token *head)
+{
+	while (head)
+	{
+		if (head->type == T_WORD && contains_invalid_char(head->str))
+			head->type = T_INVALID;
+		head = head->next;
+	}
+}
+
+bool	contains_invalid_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '&' || str[i] == ';' || str[i] == '`' || str[i] == '\\'
+			|| str[i] == '*' || str[i] == '?' || str[i] == '(' || str[i] == ')'
+			|| str[i] == '{' || str[i] == '}' || str[i] == '&')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+bool	check_token_list(t_token *head)
+{
+	t_token	*next;
+
+	while (head)
+	{
+		next = head->next;
+		if (head->type == T_PIPE && (!next || next->type == T_PIPE))
+		{
+			printf("minishell: syntax error near unexpected token `|'\n");
+			return (1);
+		}
+		if ((head->type == T_IN || head->type == T_OUT
+			|| head->type == T_HEREDOC || head->type == T_APPEND))
+		{
+			if (!next || (next->type != T_WORD && next->type != T_SQWORD
+				&& next->type != T_DQWORD))
+			{
+				printf("minishell: syntax error near unexpected token `newline'\n");
+				return (1);
+			}
+		}
+		if (head->type == T_INVALID)
+		{
+			printf("minishell: syntax error near unexpected token `%s'\n", head->str);
+			return (1);
+		}
+		head = head->next;
+	}
+	return (0);
+}
 
 void	handle_token(char *input, int *i, t_token **head)
 {

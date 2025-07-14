@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:53:17 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:37:31 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	free_token_list(t_token	*head);
 
 t_token	*tokenizer(char *input);
 void	handle_token(char *input, int *i, t_token **head);
+void	validate_token_list(t_token *head);
+bool	contains_invalid_char(char *str);
+bool	check_token_list(t_token *head);
 
 /*-----tokenizer_utility.c-----*/
 
