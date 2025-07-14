@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:20:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 14:19:40 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:20:47 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*parse_dquotes(char *input, int *i)
 
 bool	isredir_type(t_token_type type)
 {
-	if (type == T_IN || type == T_OUT || type == T_HEREDOC || type == T_HEREDOC)
+	if (type == T_IN || type == T_OUT || type == T_HEREDOC || type == T_APPEND)
 		return (1);
 	return (0);
 }
@@ -88,4 +88,10 @@ bool	isredir_type(t_token_type type)
 bool	isword_type(t_token_type type)
 {
 	return (type == T_WORD || type == T_SQWORD || type == T_DQWORD);
+}
+
+bool	error_msg(char *msg)
+{
+	printf("minishell: syntax error near unexpected token `%s'\n", msg);
+	return (1);
 }

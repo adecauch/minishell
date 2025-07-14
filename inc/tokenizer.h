@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 14:19:40 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:19:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	check_unclosed_quotes(char *input);
 bool	isredir(char c);
 bool	isredir_type(t_token_type type);
 bool	isword_type(t_token_type type);
+bool	error_msg(char *msg);
 char	*parse_word(char *input, int *i);
 char	*parse_squotes(char *input, int *i);
 char	*parse_dquotes(char *input, int *i);

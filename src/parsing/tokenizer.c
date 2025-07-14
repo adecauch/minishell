@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 16:56:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:19:05 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,13 @@ bool	check_token_list(t_token *head)
 	{
 		next = head->next;
 		if (head->type == T_PIPE && (!next || next->type == T_PIPE))
-		{
-			printf("minishell: syntax error near unexpected token `|'\n");
-			return (1);
-		}
+			return (error_msg("|"));
 		if (isredir_type(head->type) && next && !isword_type(next->type))
-		{
-			printf("minishell: syntax error near unexpected token `%s'\n", next->str);
-			return (1);
-		}
+			return (error_msg(next->str));
 		if (isredir_type(head->type) && !next)
-		{
-			printf("minishell: syntax error near unexpected token `newline'\n");
-			return (1);
-		}
+			return (error_msg("newline"));
 		if (head->type == T_INVALID)
-		{
-			printf("minishell: syntax error near unexpected token `%s'\n", head->str);
-			return (1);
-		}
+			return (error_msg(head->str));
 		head = head->next;
 	}
 	return (0);
