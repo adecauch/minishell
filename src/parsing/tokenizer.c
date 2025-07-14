@@ -6,54 +6,29 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:19:05 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:59:53 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	validate_token_list(t_token *head)
+bool	check_unclosed_quotes(char *input)
 {
-	while (head)
+	char	quote;
+
+	while (*input)
 	{
-		if (head->type == T_WORD && contains_invalid_char(head->str))
-			head->type = T_INVALID;
-		head = head->next;
-	}
-}
-
-bool	contains_invalid_char(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '&' || str[i] == ';' || str[i] == '`' || str[i] == '\\'
-			|| str[i] == '*' || str[i] == '?' || str[i] == '(' || str[i] == ')'
-			|| str[i] == '{' || str[i] == '}' || str[i] == '&')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-bool	check_token_list(t_token *head)
-{
-	t_token	*next;
-
-	while (head)
-	{
-		next = head->next;
-		if (head->type == T_PIPE && (!next || next->type == T_PIPE))
-			return (error_msg("|"));
-		if (isredir_type(head->type) && next && !isword_type(next->type))
-			return (error_msg(next->str));
-		if (isredir_type(head->type) && !next)
-			return (error_msg("newline"));
-		if (head->type == T_INVALID)
-			return (error_msg(head->str));
-		head = head->next;
+		if (*input == '\'' || *input == '"')
+		{
+			quote = *input;
+			input++;
+			while (*input && *input != quote)
+				input++;
+			if (*input != quote)
+				return (1);
+		}
+		if (*input)
+			input++;
 	}
 	return (0);
 }
@@ -80,6 +55,36 @@ void	handle_token(char *input, int *i, t_token **head)
 		add_token(parse_word(input, i), T_WORD, head);
 }
 
+void	validate_token_list(t_token *head)
+{
+	while (head)
+	{
+		if (head->type == T_WORD && contains_invalid_char(head->str))
+			head->type = T_INVALID;
+		head = head->next;
+	}
+}
+
+bool	check_token_list(t_token *head)
+{
+	t_token	*next;
+
+	while (head)
+	{
+		next = head->next;
+		if (head->type == T_PIPE && (!next || next->type == T_PIPE))
+			return (error_msg("|"));
+		if (isredir_type(head->type) && next && !isword_type(next->type))
+			return (error_msg(next->str));
+		if (isredir_type(head->type) && !next)
+			return (error_msg("newline"));
+		if (head->type == T_INVALID)
+			return (error_msg(head->str));
+		head = head->next;
+	}
+	return (0);
+}
+
 t_token	*tokenizer(char *input)
 {
 	int		i;
@@ -87,7 +92,18 @@ t_token	*tokenizer(char *input)
 
 	i = 0;
 	head = NULL;
+	if (check_unclosed_quotes(input))
+	{
+		printf("minishell: unexpected EOF while looking for matching quote\n");
+		return (head);
+	}
 	while (input[i])
 		handle_token(input, &i, &head);
+	validate_token_list(head);
+	if (check_token_list(head))
+	{
+		free_token_list(head);
+		return (NULL);
+	}
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:19:20 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:57:49 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,24 @@ void	free_token_list(t_token	*head);
 
 /*-----tokenizer.c-----*/
 
-t_token	*tokenizer(char *input);
+bool	check_unclosed_quotes(char *input);
 void	handle_token(char *input, int *i, t_token **head);
 void	validate_token_list(t_token *head);
-bool	contains_invalid_char(char *str);
 bool	check_token_list(t_token *head);
+t_token	*tokenizer(char *input);
 
-/*-----tokenizer_utility.c-----*/
+/*-----tokenizer_utility_one.c-----*/
 
-bool	check_unclosed_quotes(char *input);
+char	*parse_word(char *input, int *i);
+char	*parse_squotes(char *input, int *i);
+char	*parse_dquotes(char *input, int *i);
+bool	contains_invalid_char(char *str);
+
+/*-----tokenizer_utility_two.c-----*/
+
 bool	isredir(char c);
 bool	isredir_type(t_token_type type);
 bool	isword_type(t_token_type type);
 bool	error_msg(char *msg);
-char	*parse_word(char *input, int *i);
-char	*parse_squotes(char *input, int *i);
-char	*parse_dquotes(char *input, int *i);
 
 #endif

@@ -1,42 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_utility.c                                :+:      :+:    :+:   */
+/*   tokenizer_utility_one.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:20:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:20:47 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:09:42 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-bool	check_unclosed_quotes(char *input)
-{
-	char	quote;
-
-	while (*input)
-	{
-		if (*input == '\'' || *input == '"')
-		{
-			quote = *input;
-			input++;
-			while (*input && *input != quote)
-				input++;
-			if (*input != quote)
-				return (1);
-		}
-		if (*input)
-			input++;
-	}
-	return (0);
-}
-
-bool	isredir(char c)
-{
-	return (c == '|' || c == '<' || c == '>');
-}
 
 char	*parse_word(char *input, int *i)
 {
@@ -78,20 +52,18 @@ char	*parse_dquotes(char *input, int *i)
 	return (str);
 }
 
-bool	isredir_type(t_token_type type)
+bool	contains_invalid_char(char *str)
 {
-	if (type == T_IN || type == T_OUT || type == T_HEREDOC || type == T_APPEND)
-		return (1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '&' || str[i] == ';' || str[i] == '`' || str[i] == '\\'
+			|| str[i] == '*' || str[i] == '?' || str[i] == '(' || str[i] == ')'
+			|| str[i] == '{' || str[i] == '}' || str[i] == '&')
+			return (1);
+		i++;
+	}
 	return (0);
-}
-
-bool	isword_type(t_token_type type)
-{
-	return (type == T_WORD || type == T_SQWORD || type == T_DQWORD);
-}
-
-bool	error_msg(char *msg)
-{
-	printf("minishell: syntax error near unexpected token `%s'\n", msg);
-	return (1);
 }
