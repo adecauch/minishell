@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 17:15:15 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:31:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 # include "tokenizer.h"
 # include "debug.h"
 
-int	minishell(char **envp);
+typedef struct s_shell
+{
+	char	*input;
+	char	**envp;
+	t_token	*head;
+	//t_ast	*root;
+	int		exit_status;
+}	t_shell;
+
+char	**copy_envp(char **envp);
+void	process_input(t_shell shell);
+int		minishell(t_shell shell);
 
 #endif

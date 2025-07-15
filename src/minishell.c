@@ -6,39 +6,56 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:43:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:31:52 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	process_input(char *input, char **envp)
+char	**copy_envp(char **envp)
 {
-	t_token	*head;
+	int		i;
+	char	**copy;
 
-	(void)envp;
-	head = tokenizer(input);
-	print_token_list(head);
-	if (head)
-		free_token_list(head);
+	i = 0;
+	while (envp[i])
+		i++;
+	copy = malloc(sizeof(char *) * (i + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (envp[i])
+	{
+		copy[i] = ft_strdup(envp[i]);
+		printf("%s,\n", copy[i]);
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
 }
 
-int	minishell(char **envp)
+void	process_input(t_shell shell)
 {
-	char	*input;
+	shell.head = tokenizer(shell.input);
+	print_token_list(shell.head);
+	if (shell.head)
+		free_token_list(shell.head);
+}
 
+int	minishell(t_shell shell)
+{
 	while (1)
 	{
-		input = readline("minishell> ");
-		if (!input)
+		shell.input = readline("minishell> ");
+		if (!shell.input)
 		{
 			printf("\nexit\n");
 			break ;
 		}
-		if (*input)
-			add_history(input);
-		process_input(input, envp);
-		free(input);
+		if (*shell.input)
+			add_history(shell.input);
+		process_input(shell);
+		free(shell.input);
 	}
 	return (0);
 }
