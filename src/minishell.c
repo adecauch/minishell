@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/15 15:31:52 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:44:01 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	**copy_envp(char **envp)
 	while (envp[i])
 	{
 		copy[i] = ft_strdup(envp[i]);
-		printf("%s,\n", copy[i]);
 		i++;
 	}
 	copy[i] = NULL;
