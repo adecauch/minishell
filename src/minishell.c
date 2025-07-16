@@ -43,12 +43,13 @@ void	process_input(t_shell shell)
 
 int	minishell(t_shell shell)
 {
+	init_signals();
 	while (1)
 	{
 		shell.input = readline("minishell> ");
 		if (!shell.input)
 		{
-			printf("\nexit\n");
+			printf("exit\n");
 			break ;
 		}
 		if (*shell.input)

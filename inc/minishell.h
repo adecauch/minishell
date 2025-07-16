@@ -6,12 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/15 15:31:08 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:44:56 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# define RL_NO_COMPAT
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -20,7 +21,10 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
+# include <termios.h>
 # include "libft.h"
+# include "signals.h"
 # include "tokenizer.h"
 # include "debug.h"
 

@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/07/14 18:04:42 by adecauch         ###   ########.fr        #
+#    Updated: 2025/07/16 13:39:07 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ RESET = \033[0m
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I./inc
-LDLIBS = -lreadline
 
 # Project name
 NAME = minishell
@@ -31,6 +30,7 @@ OBJ_DIR = obj
 # Source files
 SRC = src/main.c \
 	  src/minishell.c \
+	  src/signals/signals.c \
 	  src/parsing/token.c \
 	  src/parsing/tokenizer.c \
 	  src/parsing/tokenizer_utility_one.c \
@@ -50,8 +50,16 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Rules
 all: $(NAME)
 
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+    RLFLAGS = -lreadline
+else ifeq ($(UNAME_S),Darwin)
+    RLFLAGS = -lreadline -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include
+endif
+
 $(NAME): $(OBJ_DIR) $(OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(LDLIBS)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(RLFLAGS)
 	@echo "$(GREEN)Compilation successful!$(RESET)"
 
 $(OBJ_DIR):
