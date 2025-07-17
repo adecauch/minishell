@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:57:49 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:52:51 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef enum e_token_type
 	T_OUT,
 	T_APPEND,
 	T_HEREDOC,
-	T_INVALID
+	T_INVALID,
+	T_SKIP
 }	t_token_type;
 
 typedef struct s_token

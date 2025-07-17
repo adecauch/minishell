@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:14:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:52:46 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:52:51 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	free_token_list(t_token *head)
 	while (head)
 	{
 		tmp = head->next;
-		if (head->str)
-			free(head->str);
+		free(head->str);
 		free(head);
 		head = tmp;
 	}
