@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 11:52:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:48:11 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_token
 t_token	*new_token(char *str, t_token_type type);
 void	add_token(char *str, t_token_type type, t_token **head);
 void	add_redir_token(char *str, t_token_type type, t_token **head, int *i);
+bool	has_remaining_tokens(t_token *head);
 void	free_token_list(t_token	*head);
 
 /*-----tokenizer.c-----*/

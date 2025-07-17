@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:14:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 11:52:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 22:48:11 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ void	add_redir_token(char *str, t_token_type type, t_token **head, int *i)
 		add_token(str, type, head);
 		*i += 2;
 	}
+}
+
+bool	has_remaining_tokens(t_token *head)
+{
+	while (head)
+	{
+		if (head->type != T_SKIP)
+			return (1);
+		head = head->next;
+	}
+	return (0);
 }
 
 void	free_token_list(t_token *head)
