@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 14:16:41 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:58:35 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_shell
 	char	**envp;
 	t_token	*head;
 	t_cmd	*root;
-	int		exit_status;
+	int		last_status;
 }	t_shell;
 
 char	**copy_envp(char **envp);
