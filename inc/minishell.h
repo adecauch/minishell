@@ -6,13 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/16 13:44:56 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:16:41 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# define RL_NO_COMPAT
+//# define RL_NO_COMPAT
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,6 +26,7 @@
 # include "libft.h"
 # include "signals.h"
 # include "tokenizer.h"
+# include "ast.h"
 # include "debug.h"
 
 typedef struct s_shell
@@ -33,7 +34,7 @@ typedef struct s_shell
 	char	*input;
 	char	**envp;
 	t_token	*head;
-	//t_ast	*root;
+	t_cmd	*root;
 	int		exit_status;
 }	t_shell;
 

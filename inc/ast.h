@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:43:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 12:29:19 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:21:18 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	free_redir_list(t_redir	*head);
 
 /*-----ast_expand.c-----*/
 
-char	*expand_variable(char *var_name, char **envp);
+char	*join_and_free(char *s1, char *s2);
+char	*get_env_value(char *name, char **envp, int last_status);
+bool	is_valid_var_char(char c, int pos);
+char	*expand_str(char *str, char **envp, int last_status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:15:52 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:20:07 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:52:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ char	*ft_strdup(const char *str);
 //char	*ft_strrchr(const char *str, int c);
 //char	*ft_strnstr(const char *str, const char *find, size_t n);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-//char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strjoin(const char *s1, const char *s2);
 //char	*ft_strtrim(const char *s1, const char *set);
 //char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
-//char	*ft_itoa(int n);
+char	*ft_itoa(int n);
 //char	**ft_split(const char *s1, char c);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -43,10 +43,10 @@ int		ft_isalnum(int c);
 //int		ft_tolower(int c);
 int		ft_isspace(int c);
 //int		ft_atoi(const char *str);
-//int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 //int		ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t	ft_strlen(const char *str);
-//size_t	ft_strlcpy(char *dst, const char *src, size_t lendst);
+size_t	ft_strlcpy(char *dst, const char *src, size_t lendst);
 //size_t	ft_strlcat(char *dst, const char *src, size_t len);
 
 #endif
