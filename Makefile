@@ -35,6 +35,10 @@ SRC = src/main.c \
 	  src/parsing/tokenizer.c \
 	  src/parsing/tokenizer_utility_one.c \
 	  src/parsing/tokenizer_utility_two.c \
+	  src/parsing/ast.c \
+	  src/parsing/ast_cmd.c \
+	  src/parsing/ast_expand.c \
+	  src/parsing/ast_redir.c \
 	  src/libft/ft_isdigit.c \
 	  src/libft/ft_isalpha.c \
 	  src/libft/ft_isalnum.c \
@@ -42,6 +46,10 @@ SRC = src/main.c \
 	  src/libft/ft_strlen.c \
 	  src/libft/ft_strdup.c \
 	  src/libft/ft_substr.c \
+	  src/libft/ft_strjoin.c \
+	  src/libft/ft_itoa.c \
+	  src/libft/ft_strncmp.c \
+	  src/libft/ft_strlcpy.c \
 	  src/debug/debug.c
 
 # Object files

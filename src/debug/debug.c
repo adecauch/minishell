@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 12:57:08 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 00:00:44 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,52 @@ void	print_token_list(t_token *head)
 			printf("T_HEREDOC : ");
 		printf("%s\n", head->str);
 		head = head->next;
+	}
+}
+
+void	print_redir_type(t_redir_type type)
+{
+	if (type == IN)
+		printf("IN");
+	else if (type == OUT)
+		printf("OUT");
+	else if (type == APPEND)
+		printf("APPEND");
+	else if (type == HEREDOC)
+		printf("HEREDOC");
+}
+
+void	print_ast(t_cmd *root)
+{
+	int		i;
+	t_redir	*redir;
+
+	while (root)
+	{
+		printf("COMMAND:\n");
+		if (root->cmd_args)
+		{
+			i = 0;
+			while (root->cmd_args[i])
+			{
+				printf("  arg[%d]: %s\n", i, root->cmd_args[i]);
+				i++;
+			}
+		}
+		else
+			printf("  No arguments\n");
+		redir = root->redir;
+		while (redir)
+		{
+			printf("  redir: ");
+			print_redir_type(redir->type);
+			printf(" file=\"%s\"", redir->file);
+			if (redir->type == HEREDOC)
+				printf(" ex_here=%s", redir->ex_here ? "true" : "false");
+			printf("\n");
+			redir = redir->next;
+		}
+		printf("--------\n");
+		root = root->next;
 	}
 }

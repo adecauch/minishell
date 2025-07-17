@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:43:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 16:21:18 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/17 23:58:16 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct s_cmd
 }	t_cmd;
 
 /*-----ast.c-----*/
+
+t_cmd			*make_ast(t_token *head, char **envp, int last_status);
+int				count_args(t_token *head);
+char			**extract_cmd_args(t_token *head, char **envp, int last_status);
+t_redir_type	ttype_to_rtype(t_token_type type);
+t_redir			*extract_redir(t_token *head, char **envp, int last_status);
 
 /*-----ast_cmd.c-----*/
 

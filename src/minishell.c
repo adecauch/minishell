@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/15 15:44:01 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 00:18:31 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ char	**copy_envp(char **envp)
 void	process_input(t_shell shell)
 {
 	shell.head = tokenizer(shell.input);
+	print_token_list(shell.head);
+	shell.root = make_ast(shell.head, shell.envp, shell.last_status);
+	print_ast(shell.root);
 	print_token_list(shell.head);
 	if (shell.head)
 		free_token_list(shell.head);

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 03:52:23 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/12 16:40:55 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 00:01:38 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define DEBUG_H
 
 void	print_token_list(t_token *head_token);
+void	print_ast(t_cmd *root);
 
 #endif
