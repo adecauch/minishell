@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 17:19:39 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:38:12 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,36 @@ void	print_redir_type(t_rtype type)
 		printf("HEREDOC");
 }
 
+void	print_redir(t_redir *redir)
+{
+	while (redir)
+	{
+		printf("  redir: ");
+		print_redir_type(redir->type);
+		printf(" file=\"%s\"", redir->file);
+		if (redir->type == HEREDOC)
+		{
+			if (redir->ex_here)
+				printf(" ex_here=true");
+			else
+				printf(" ex_here=false");
+		}
+		printf("\n");
+		redir = redir->next;
+	}
+}
+
 void	print_ast(t_cmd *root)
 {
-	int		i;
-	t_redir	*redir;
+	int	i;
 
 	while (root)
 	{
 		printf("COMMAND:\n");
 		if (root->cmd_args)
 		{
-			i = 0;
+			printf("  cmd  : %s\n", root->cmd_args[0]);
+			i = 1;
 			while (root->cmd_args[i])
 			{
 				printf("  arg[%d]: %s\n", i, root->cmd_args[i]);
@@ -70,17 +89,7 @@ void	print_ast(t_cmd *root)
 		}
 		else
 			printf("  No arguments\n");
-		redir = root->redir;
-		while (redir)
-		{
-			printf("  redir: ");
-			print_redir_type(redir->type);
-			printf(" file=\"%s\"", redir->file);
-			if (redir->type == HEREDOC)
-				printf(" ex_here=%s", redir->ex_here ? "true" : "false");
-			printf("\n");
-			redir = redir->next;
-		}
+		print_redir(root->redir);
 		printf("--------\n");
 		root = root->next;
 	}

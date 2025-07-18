@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 17:57:00 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:48:21 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 char	**copy_envp(char **envp)
 {
@@ -39,7 +39,6 @@ void	process_input(t_shell shell)
 	print_token_list(shell.head);
 	shell.root = make_ast(shell.head, shell.envp, shell.last_status);
 	print_ast(shell.root);
-	print_token_list(shell.head);
 	free_token_list(shell.head);
 	free_cmd_list(shell.root);
 }

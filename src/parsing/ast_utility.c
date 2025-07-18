@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 17:46:59 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 17:53:41 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:23:39 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ t_rtype	ttype_to_rtype(t_token_type type)
 
 void	free_str_array(char **arr)
 {
+	char	**tmp;
+
 	if (!arr)
 		return ;
-	while (*arr)
-		free(*arr++);
+	tmp = arr;
+	while (*tmp)
+		free(*tmp++);
 	free(arr);
 }
