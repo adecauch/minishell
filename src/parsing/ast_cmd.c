@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:22:39 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 12:23:54 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:50:44 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,21 @@ void	add_cmd(char **cmd_args, t_redir *redir, t_cmd **root)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = cmd;
+	}
+}
+
+void	free_cmd_list(t_cmd *head)
+{
+	t_cmd	*tmp;
+
+	while (head)
+	{
+		tmp = head->next;
+		if (head->cmd_args)
+			free_str_array(head->cmd_args);
+		if (head->redir)
+			free_redir_list(head->redir);
+		free(head);
+		head = tmp;
 	}
 }

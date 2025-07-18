@@ -6,16 +6,16 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 11:45:50 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 11:52:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:27:28 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_redir	*new_redir(t_redir_type type, char *file, bool ex_here)
+t_redir	*new_redir(t_rtype type, char *file, bool ex_here)
 {
 	t_redir	*redir;
-	
+
 	redir = malloc(sizeof(t_redir));
 	if (!redir)
 		return (NULL);
@@ -26,7 +26,7 @@ t_redir	*new_redir(t_redir_type type, char *file, bool ex_here)
 	return (redir);
 }
 
-void	add_redir(t_redir_type type, char *file, bool ex_here, t_redir **head)
+void	add_redir(t_rtype type, char *file, bool ex_here, t_redir **head)
 {
 	t_redir	*redir;
 	t_redir	*tmp;
@@ -39,7 +39,7 @@ void	add_redir(t_redir_type type, char *file, bool ex_here, t_redir **head)
 	else
 	{
 		tmp = *head;
-		while(tmp->next)
+		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = redir;
 	}

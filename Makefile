@@ -39,6 +39,7 @@ SRC = src/main.c \
 	  src/parsing/ast_cmd.c \
 	  src/parsing/ast_expand.c \
 	  src/parsing/ast_redir.c \
+	  src/parsing/ast_utility.c \
 	  src/libft/ft_isdigit.c \
 	  src/libft/ft_isalpha.c \
 	  src/libft/ft_isalnum.c \

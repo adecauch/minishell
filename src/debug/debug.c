@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 00:00:44 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:19:39 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_token_list(t_token *head)
 	}
 }
 
-void	print_redir_type(t_redir_type type)
+void	print_redir_type(t_rtype type)
 {
 	if (type == IN)
 		printf("IN");

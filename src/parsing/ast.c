@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 01:18:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 00:09:52 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:49:55 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@ t_cmd	*make_ast(t_token *head, char **envp, int last_status)
 		}
 	}
 	return (root);
-}
-
-int	count_args(t_token *head)
-{
-	int	count;
-
-	count = 0;
-	while (head && head->type != T_PIPE)
-	{
-		if (isword_type(head->type))
-			count++;
-		head = head->next;
-	}
-	return (count);
 }
 
 char	**extract_cmd_args(t_token *head, char **envp, int last_status)
@@ -76,17 +62,6 @@ char	**extract_cmd_args(t_token *head, char **envp, int last_status)
 	}
 	cmd_args[i] = NULL;
 	return (cmd_args);
-}
-
-t_redir_type	ttype_to_rtype(t_token_type type)
-{
-	if (type == T_IN)
-		return (IN);
-	if (type == T_OUT)
-		return (OUT);
-	if (type == T_APPEND)
-		return (APPEND);
-	return (HEREDOC);
 }
 
 t_redir	*extract_redir(t_token *head, char **envp, int last_status)

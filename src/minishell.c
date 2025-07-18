@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 00:18:31 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 17:57:00 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	process_input(t_shell shell)
 	shell.root = make_ast(shell.head, shell.envp, shell.last_status);
 	print_ast(shell.root);
 	print_token_list(shell.head);
-	if (shell.head)
-		free_token_list(shell.head);
+	free_token_list(shell.head);
+	free_cmd_list(shell.root);
 }
 
 int	minishell(t_shell shell)
