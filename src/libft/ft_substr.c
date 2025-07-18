@@ -6,11 +6,11 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 01:53:17 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/13 15:19:41 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:18:09 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {

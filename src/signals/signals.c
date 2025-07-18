@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
 #ifdef __linux__
 # define HAS_RL_REPLACE_LINE 1
