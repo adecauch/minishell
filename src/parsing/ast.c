@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 01:18:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 17:49:55 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:45:34 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_cmd	*make_ast(t_token *head, char **envp, int last_status)
 			head = head->next;
 		}
 	}
+	check_builtin(root);
 	return (root);
 }
 

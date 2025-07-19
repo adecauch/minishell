@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 18:38:12 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:08:42 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	print_ast(t_cmd *root)
 		if (root->cmd_args)
 		{
 			printf("  cmd  : %s\n", root->cmd_args[0]);
+			if (root->is_builtin)
+				printf("  ^BUILTIN^ \n");
 			i = 1;
 			while (root->cmd_args[i])
 			{

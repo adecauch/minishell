@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/14 17:59:53 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/19 15:55:37 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ bool	check_token_list(t_token *head)
 {
 	t_token	*next;
 
+	if (head->type == T_PIPE)
+		return (error_msg(head->str));
 	while (head)
 	{
 		next = head->next;

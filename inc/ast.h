@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 16:43:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 17:58:12 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:45:34 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_cmd
 	char			**cmd_args;
 	t_redir			*redir;
 	struct s_cmd	*next;
+	bool			is_builtin;
 }	t_cmd;
 
 /*-----ast.c-----*/
@@ -46,7 +47,7 @@ char	**extract_cmd_args(t_token *head, char **envp, int last_status);
 
 t_cmd	*new_cmd(char **cmd_args, t_redir *redir);
 void	add_cmd(char **cmd_args, t_redir *redir, t_cmd **root);
-void	free_cmd_list(t_cmd *head);
+void	free_cmd_list(t_cmd *root);
 
 /*-----ast_redir.c-----*/
 
@@ -66,5 +67,7 @@ char	*expand_str(char *str, char **envp, int last_status);
 int		count_args(t_token *head);
 t_rtype	ttype_to_rtype(t_token_type type);
 void	free_str_array(char **arr);
+bool	is_builtin(char **cmd_args);
+void	check_builtin(t_cmd *root);
 
 #endif
