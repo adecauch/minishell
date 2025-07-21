@@ -67,9 +67,9 @@ char	**extract_cmd_args(t_token *head, char **envp, int last_status)
 
 t_redir	*extract_redir(t_token *head, char **envp, int last_status)
 {
-	t_redir			*redir;
-	bool			ex_here;
-	char			*file;
+	t_redir		*redir;
+	bool		ex_here;
+	char		*file;
 
 	redir = NULL;
 	while (head && head->type != T_PIPE)

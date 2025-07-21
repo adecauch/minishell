@@ -15,10 +15,13 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
+	int		ret;
 
 	shell.envp = copy_envp(envp);
 	shell.last_status = 0;
 	(void)argc;
 	(void)argv;
-	return (minishell(shell));
+	ret = minishell(shell);
+	free_str_array(shell.envp);
+	return (ret);
 }

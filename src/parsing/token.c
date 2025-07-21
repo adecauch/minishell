@@ -58,15 +58,18 @@ void	add_redir_token(char *str, t_token_type type, t_token **head, int *i)
 	}
 }
 
-bool	has_remaining_tokens(t_token *head)
+void	add_word_token(char *input, int *i, t_token **head, t_token_type type)
 {
-	while (head)
-	{
-		if (head->type != T_SKIP)
-			return (1);
-		head = head->next;
-	}
-	return (0);
+	char	*str;
+
+	if (type == T_WORD)
+		str = parse_word(input, i);
+	else if (type == T_SQWORD)
+		str = parse_squotes(input, i);
+	else
+		str = parse_dquotes(input, i);
+	add_token(str, type, head);
+	free(str);
 }
 
 void	free_token_list(t_token *head)

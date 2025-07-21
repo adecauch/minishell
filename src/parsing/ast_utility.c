@@ -53,6 +53,8 @@ bool	is_builtin(char **cmd_args)
 {
 	int	len;
 
+	if (!cmd_args || !cmd_args[0])
+		return (0);
 	len = ft_strlen(cmd_args[0]);
 	if (!ft_strncmp(cmd_args[0], "echo", len) && len == 4)
 		return (1);

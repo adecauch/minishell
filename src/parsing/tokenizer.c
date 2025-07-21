@@ -48,11 +48,11 @@ void	handle_token(char *input, int *i, t_token **head)
 	else if (input[*i] == '>')
 		add_redir_token(">", T_OUT, head, i);
 	else if (input[*i] == '\'')
-		add_token(parse_squotes(input, i), T_SQWORD, head);
+		add_word_token(input, i, head, T_SQWORD);
 	else if (input[*i] == '"')
-		add_token(parse_dquotes(input, i), T_DQWORD, head);
+		add_word_token(input, i, head, T_DQWORD);
 	else
-		add_token(parse_word(input, i), T_WORD, head);
+		add_word_token(input, i, head, T_WORD);
 }
 
 void	validate_token_list(t_token *head)

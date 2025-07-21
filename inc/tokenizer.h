@@ -39,7 +39,7 @@ typedef struct s_token
 t_token	*new_token(char *str, t_token_type type);
 void	add_token(char *str, t_token_type type, t_token **head);
 void	add_redir_token(char *str, t_token_type type, t_token **head, int *i);
-bool	has_remaining_tokens(t_token *head);
+void	add_word_token(char *input, int *i, t_token **head, t_token_type type);
 void	free_token_list(t_token	*head);
 
 /*-----tokenizer.c-----*/
@@ -56,6 +56,7 @@ char	*parse_word(char *input, int *i);
 char	*parse_squotes(char *input, int *i);
 char	*parse_dquotes(char *input, int *i);
 bool	contains_invalid_char(char *str);
+bool	has_remaining_tokens(t_token *head);
 
 /*-----tokenizer_utility_two.c-----*/
 

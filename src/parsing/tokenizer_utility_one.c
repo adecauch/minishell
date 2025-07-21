@@ -67,3 +67,14 @@ bool	contains_invalid_char(char *str)
 	}
 	return (0);
 }
+
+bool	has_remaining_tokens(t_token *head)
+{
+	while (head)
+	{
+		if (head->type != T_SKIP)
+			return (1);
+		head = head->next;
+	}
+	return (0);
+}
