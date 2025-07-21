@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:39:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/19 17:08:42 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/21 19:41:46 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	print_ast(t_cmd *root)
 {
 	int	i;
 
+	if (!root)
+		return ;
 	while (root)
 	{
 		printf("COMMAND:\n");
