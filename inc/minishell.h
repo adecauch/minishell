@@ -6,13 +6,12 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 16:58:35 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:28:50 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-//# define RL_NO_COMPAT
 
 # include <stdio.h>
 # include <stdlib.h>
