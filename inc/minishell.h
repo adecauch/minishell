@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/31 14:28:50 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/08 18:25:30 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <signal.h>
 # include <termios.h>
 # include "libft.h"
+# include "envp.h"
 # include "signals.h"
 # include "tokenizer.h"
 # include "ast.h"
@@ -37,7 +38,6 @@ typedef struct s_shell
 	int		last_status;
 }	t_shell;
 
-char	**copy_envp(char **envp);
 void	process_input(t_shell shell);
 int		minishell(t_shell shell);
 

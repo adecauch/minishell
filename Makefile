@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/07/16 13:39:07 by adecauch         ###   ########.fr        #
+#    Updated: 2025/08/08 18:27:06 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ OBJ_DIR = obj
 # Source files
 SRC = src/main.c \
 	  src/minishell.c \
+	  src/envp.c \
 	  src/signals/signals.c \
 	  src/parsing/token.c \
 	  src/parsing/tokenizer.c \
