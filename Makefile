@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/08/08 18:27:06 by adecauch         ###   ########.fr        #
+#    Updated: 2025/08/10 17:51:23 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,21 @@ OBJ_DIR = obj
 # Source files
 SRC = src/main.c \
 	  src/minishell.c \
-	  src/envp.c \
+	  src/libft/ft_isdigit.c \
+	  src/libft/ft_isalpha.c \
+	  src/libft/ft_isalnum.c \
+	  src/libft/ft_isspace.c \
+	  src/libft/ft_strlen.c \
+	  src/libft/ft_strdup.c \
+	  src/libft/ft_strchr.c \
+	  src/libft/ft_substr.c \
+	  src/libft/ft_strjoin.c \
+	  src/libft/ft_itoa.c \
+	  src/libft/ft_strncmp.c \
+	  src/libft/ft_strlcpy.c \
+	  src/envp/envp.c \
+	  src/envp/envp_utility.c \
+	  src/envp/set_env_var_utility.c \
 	  src/signals/signals.c \
 	  src/parsing/token.c \
 	  src/parsing/tokenizer.c \
@@ -41,17 +55,6 @@ SRC = src/main.c \
 	  src/parsing/ast_expand.c \
 	  src/parsing/ast_redir.c \
 	  src/parsing/ast_utility.c \
-	  src/libft/ft_isdigit.c \
-	  src/libft/ft_isalpha.c \
-	  src/libft/ft_isalnum.c \
-	  src/libft/ft_isspace.c \
-	  src/libft/ft_strlen.c \
-	  src/libft/ft_strdup.c \
-	  src/libft/ft_substr.c \
-	  src/libft/ft_strjoin.c \
-	  src/libft/ft_itoa.c \
-	  src/libft/ft_strncmp.c \
-	  src/libft/ft_strlcpy.c \
 	  src/debug/debug.c
 
 # Object files

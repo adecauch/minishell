@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:04:02 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 17:41:08 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 17:47:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	is_valid_identifier(char *arg)
 	if (equal_pos)
 		len = equal_pos - arg;
 	else
-		len = (int)ft_strlen(arg);
+		len = ft_strlen(arg);
 	if (len == 0 || (!ft_isalpha(arg[0]) && arg[0] != '_'))
 		return (0);
 	i = 1;
