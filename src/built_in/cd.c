@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 15:16:13 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 18:48:14 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:31:47 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	update_pwd(char ***envp, char *old_pwd)
 static char	*get_home(char **envp)
 {
 	int		i;
-	char	*home;
 
 	i = find_env_var(envp, "HOME");
 	if (i == -1)

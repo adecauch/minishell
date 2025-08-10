@@ -40,12 +40,22 @@ SRC = src/main.c \
 	  src/libft/ft_substr.c \
 	  src/libft/ft_strjoin.c \
 	  src/libft/ft_itoa.c \
+	  src/libft/ft_atoi.c \
 	  src/libft/ft_strncmp.c \
 	  src/libft/ft_strlcpy.c \
 	  src/envp/envp.c \
 	  src/envp/envp_utility.c \
 	  src/envp/set_env_var_utility.c \
+	  src/envp/unset_env_var_utility.c \
 	  src/signals/signals.c \
+	  src/built_in/echo.c \
+	  src/built_in/cd.c \
+	  src/built_in/pwd.c \
+	  src/built_in/export.c \
+	  src/built_in/unset.c \
+	  src/built_in/env.c \
+	  src/built_in/exit.c \
+	  src/built_in/print_export.c \
 	  src/parsing/token.c \
 	  src/parsing/tokenizer.c \
 	  src/parsing/tokenizer_utility_one.c \

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:27:29 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 20:21:27 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:34:28 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	print_export(char **envp);
 
 /*-----unset.c-----*/
 
-int	bi_unset(char **cmd_args, char ***envp);
+int		bi_unset(char **cmd_args, char ***envp);
 
 /*-----env.c-----*/
 
-int	bi_env(char **cmd_args, char **envp);
+int		bi_env(char **cmd_args, char **envp);
 
 /*-----exit.c-----*/
 
-int	bi_exit(char **cmd_args, int *last_status);
+int		bi_exit(char **cmd_args, int *last_status);
 
 #endif

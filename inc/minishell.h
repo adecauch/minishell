@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/08 18:25:30 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 20:36:50 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "libft.h"
 # include "envp.h"
 # include "signals.h"
+# include "builtin.h"
 # include "tokenizer.h"
 # include "ast.h"
 # include "debug.h"
