@@ -6,13 +6,43 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:27:29 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/31 15:46:01 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 17:35:21 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
-int	bi_echo(char **cmd_args);
+/*-----echo.c-----*/
+
+int		bi_echo(char **cmd_args);
+
+/*-----cd.c-----*/
+
+
+
+/*-----pwd.c-----*/
+
+int		bi_pwd(char **cmd_args);
+
+/*-----export.c-----*/
+
+int		bi_export(char **cmd_args, char ***envp);
+
+/*-----print_export.c-----*/
+
+void	print_export(char **envp);
+
+/*-----unset.c-----*/
+
+
+
+/*-----env.c-----*/
+
+int	bi_env(char **cmd_args, char **envp);
+
+/*-----exit.c-----*/
+
+
 
 #endif
