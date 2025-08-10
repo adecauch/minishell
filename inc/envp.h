@@ -17,6 +17,7 @@
 
 char	**copy_envp(char **envp);
 int		set_env_var(char ***envp, char *name, char *value);
+int		unset_env_var(char ***envp, char *name);
 
 /*-----envp_utility-----*/
 
@@ -29,5 +30,10 @@ char	*create_env_entry(char *name, char *value);
 char	**allocate_new_envp(char **envp, int count);
 int		update_existing_var(char ***envp, int index, char *new_entry);
 int		add_new_var(char ***envp, char *new_entry);
+
+/*-----unset_env_var_utility.c-----*/
+
+char	**create_reduced_envp(char **envp, int count, int skip_index);
+void	remove_env_entry(char ***envp, int index);
 
 #endif
