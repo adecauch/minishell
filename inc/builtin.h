@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:27:29 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 17:35:21 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 18:51:56 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		bi_echo(char **cmd_args);
 
 /*-----cd.c-----*/
 
-
+int		bi_cd(char **cmd_args, char ***envp);
 
 /*-----pwd.c-----*/
 
