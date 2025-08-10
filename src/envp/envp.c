@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:12:10 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/08 18:25:30 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 01:56:13 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,20 @@ char	**copy_envp(char **envp)
 	}
 	copy[i] = NULL;
 	return (copy);
+}
+
+int	set_env_var(char ***envp, char *name, char *value)
+{
+	int		index;
+	char	*new_entry;
+
+	if (!envp || !*envp || !name)
+		return (-1);
+	new_entry = create_env_entry(name, value);
+	if (!new_entry)
+		return (-1);
+	index = find_env_var(*envp, name);
+	if (index != -1)
+		return (update_existing_var(envp, index, new_entry));
+	return (add_new_var(envp, new_entry));
 }
