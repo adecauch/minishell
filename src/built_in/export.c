@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:04:02 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 17:29:32 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/10 17:41:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,24 @@
 
 static bool	is_valid_identifier(char *arg)
 {
-	char	*name;
 	char	*equal_pos;
 	int		i;
+	int		len;
 
 	equal_pos = ft_strchr(arg, '=');
 	if (equal_pos)
-	{
-		name = ft_substr(arg, 0, equal_pos - arg);
-		if (!name)
-			return (0);
-	}
+		len = equal_pos - arg;
 	else
-		name = ft_strdup(arg);
-	if (!name || !name[0])
-		return (free(name), 0);
-	if (!ft_isalpha(name[0]) && name[0] != '_')
-		return (free(name), 0);
+		len = (int)ft_strlen(arg);
+	if (len == 0 || (!ft_isalpha(arg[0]) && arg[0] != '_'))
+		return (0);
 	i = 1;
-	while (name[i])
+	while (i < len)
 	{
-		if (!ft_isalnum(name[i]) && name[i] != '_')
-			return (free(name), 0);
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+			return (0);
 		i++;
 	}
-	free(name);
 	return (1);
 }
 
