@@ -65,6 +65,7 @@ SRC = src/main.c \
 	  src/parsing/ast_expand.c \
 	  src/parsing/ast_redir.c \
 	  src/parsing/ast_utility.c \
+	  src/exec/exec.c \
 	  src/debug/debug.c
 
 # Object files

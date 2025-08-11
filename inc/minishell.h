@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 20:36:50 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/11 04:54:42 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <termios.h>
+# include <limits.h>
 # include "libft.h"
 # include "envp.h"
 # include "signals.h"
@@ -38,6 +39,8 @@ typedef struct s_shell
 	t_cmd	*root;
 	int		last_status;
 }	t_shell;
+
+# include "exec.h"
 
 void	process_input(t_shell shell);
 int		minishell(t_shell shell);
