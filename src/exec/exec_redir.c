@@ -72,103 +72,35 @@ int	setup_append(t_redir *redir)
 	return (0);
 }
 
-int	fill_heredoc(t_redir *redir)
-{
-	char	*line;
-
-	while (1)
-	{
-		line = readline("> ");
-		if (!line || ft_strncmp(line, redir->file, ft_strlen(redir->file)) == 0)
-		{
-			free(line);
-			break ;
-		}
-		free(line);
-	}
-	return (0);
-}
-
-int	setup_heredoc(t_redir *redir)
-{
-	int		pipe_fd[2];
-	char	*line;
-
-	if (pipe(pipe_fd) == -1)
-	{
-		perror("pipe");
-		return (-1);
-	}
-	while (1)
-	{
-		line = readline("> ");
-		if (!line || ft_strncmp(line, redir->file, ft_strlen(redir->file)) == 0)
-		{
-			free(line);
-			break ;
-		}
-		write(pipe_fd[1], line, ft_strlen(line));
-		write(pipe_fd[1], "\n", 1);
-		free(line);
-	}
-	close(pipe_fd[1]);
-	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
-	{
-		perror("dup2");
-		close(pipe_fd[0]);
-		return (-1);
-	}
-	close(pipe_fd[0]);
-	return (0);
-}
-
 int	exec_redir(t_redir *redir)
 {
 	t_redir	*current;
-	t_redir	*last_heredoc;
+	t_redir	*last_input;
+	t_redir	*last_output;
 
+	if (handle_all_heredocs(redir) == -1)
+		return (-1);
 	current = redir;
-	last_heredoc = NULL;
+	last_input = NULL;
+	last_output = NULL;
 	while (current)
 	{
-		if (current->type == IN)
-		{
-			if (setup_in(current) == -1)
-				return (-1);
-		}
-		else if (current->type == OUT)
-		{
-			if (setup_out(current) == -1)
-				return (-1);
-		}
-		else if (current->type == APPEND)
-		{
-			if (setup_append(current) == -1)
-				return (-1);
-		}
-		else if (current->type == HEREDOC)
-		{
-			last_heredoc = current;
-		}
+		if (current->type == IN || current->type == HEREDOC)
+			last_input = current;
+		else if (current->type == OUT || current->type == APPEND)
+			last_output = current;
 		current = current->next;
 	}
-	current = redir;
-	while (current)
+	if (last_output)
 	{
-		if (current->type == HEREDOC)
-		{
-			if (current == last_heredoc)
-			{
-				if (setup_heredoc(current) == -1)
-					return (-1);
-			}
-			else
-			{
-				if (fill_heredoc(current) == -1)
-					return (-1);
-			}
-		}
-		current = current->next;
+		if (last_output->type == OUT && setup_out(last_output) == -1)
+			return (-1);
+		else if (last_output->type == APPEND && setup_append(last_output) == -1)
+			return (-1);
 	}
+	if (last_input && last_input->type == IN)
+		return (setup_in(last_input));
+	else if (last_input && last_input->type == HEREDOC)
+		return (setup_heredoc(last_input));
 	return (0);
 }

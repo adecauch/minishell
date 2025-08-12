@@ -38,7 +38,11 @@ int		exec_builtin(t_cmd *cmd, t_shell *shell);
 int		setup_in(t_redir *redir);
 int		setup_out(t_redir *redir);
 int		setup_append(t_redir *redir);
-int		setup_heredoc(t_redir *redir);
 int		exec_redir(t_redir *redir);
+
+/*-----exec_heredoc.c-----*/
+
+int		setup_heredoc(t_redir *redir);
+int		handle_all_heredocs(t_redir *redir);
 
 #endif
