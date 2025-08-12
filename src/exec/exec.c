@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 04:51:17 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/12 22:50:01 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/12 23:15:34 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exec_single_cmd(t_shell *shell)
 		return (0);
 	original_stdin = dup(STDIN_FILENO);
 	original_stdout = dup(STDOUT_FILENO);
-	if (setup_redirections(cmd->redir) == -1)
+	if (exec_redir(cmd->redir) == -1)
 	{
 		close(original_stdin);
 		close(original_stdout);
