@@ -69,7 +69,7 @@ SRC = src/main.c \
 	  src/exec/exec.c \
 	  src/exec/exec_utility.c \
 	  src/exec/exec_single_cmd.c \
-	  src/exec/handle_redirections.c \
+	  src/exec/exec_redir.c \
 	  src/debug/debug.c
 
 # Object files
