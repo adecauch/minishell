@@ -72,6 +72,23 @@ int	setup_append(t_redir *redir)
 	return (0);
 }
 
+int	fill_heredoc(t_redir *redir)
+{
+	char	*line;
+
+	while (1)
+	{
+		line = readline("> ");
+		if (!line || ft_strncmp(line, redir->file, ft_strlen(redir->file)) == 0)
+		{
+			free(line);
+			break ;
+		}
+		free(line);
+	}
+	return (0);
+}
+
 int	setup_heredoc(t_redir *redir)
 {
 	int		pipe_fd[2];
@@ -108,8 +125,10 @@ int	setup_heredoc(t_redir *redir)
 int	exec_redir(t_redir *redir)
 {
 	t_redir	*current;
+	t_redir	*last_heredoc;
 
 	current = redir;
+	last_heredoc = NULL;
 	while (current)
 	{
 		if (current->type == IN)
@@ -129,8 +148,25 @@ int	exec_redir(t_redir *redir)
 		}
 		else if (current->type == HEREDOC)
 		{
-			if (setup_heredoc(current) == -1)
-				return (-1);
+			last_heredoc = current;
+		}
+		current = current->next;
+	}
+	current = redir;
+	while (current)
+	{
+		if (current->type == HEREDOC)
+		{
+			if (current == last_heredoc)
+			{
+				if (setup_heredoc(current) == -1)
+					return (-1);
+			}
+			else
+			{
+				if (fill_heredoc(current) == -1)
+					return (-1);
+			}
 		}
 		current = current->next;
 	}
