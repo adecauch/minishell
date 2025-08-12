@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 02:15:52 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 20:37:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/12 22:38:15 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strjoin(const char *s1, const char *s2);
 //char	*ft_strtrim(const char *s1, const char *set);
 //char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
-//char	**ft_split(const char *s1, char c);
+char	**ft_split(const char *s1, char c);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

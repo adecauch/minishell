@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/08/10 17:51:23 by adecauch         ###   ########.fr        #
+#    Updated: 2025/08/12 22:50:01 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = src/main.c \
 	  src/libft/ft_atoi.c \
 	  src/libft/ft_strncmp.c \
 	  src/libft/ft_strlcpy.c \
+	  src/libft/ft_split.c \
 	  src/envp/envp.c \
 	  src/envp/envp_utility.c \
 	  src/envp/set_env_var_utility.c \
@@ -66,6 +67,9 @@ SRC = src/main.c \
 	  src/parsing/ast_redir.c \
 	  src/parsing/ast_utility.c \
 	  src/exec/exec.c \
+	  src/exec/exec_utility.c \
+	  src/exec/exec_single_cmd.c \
+	  src/exec/handle_redirections.c \
 	  src/debug/debug.c
 
 # Object files
