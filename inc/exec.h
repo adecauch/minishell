@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 04:49:49 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/12 23:15:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 01:27:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,16 @@ int		exec_redir(t_redir *redir);
 
 /*-----exec_heredoc.c-----*/
 
-int		setup_heredoc(t_redir *redir);
-int		handle_all_heredocs(t_redir *redir);
+char	*fill_heredoc(t_redir *redir);
+int		setup_heredoc_with_content(char *content);
+t_redir	*find_last_heredoc(t_redir *redir);
+char	*handle_all_heredocs(t_redir *redir);
+
+/*-----exec_redir_utility.c-----*/
+
+int		create_output_file(t_redir *redir);
+int		setup_output_redir(t_redir *redir);
+t_redir	*find_last_input(t_redir *redir);
+int		handle_input_redir(t_redir *last_input, char *heredoc_content);
 
 #endif

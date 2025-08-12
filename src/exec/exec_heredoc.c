@@ -6,13 +6,13 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 23:53:08 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/12 23:53:11 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 01:26:29 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*fill_heredoc(t_redir *redir)
+char	*fill_heredoc(t_redir *redir)
 {
 	char	*line;
 	char	*content;
@@ -38,21 +38,18 @@ static char	*fill_heredoc(t_redir *redir)
 	return (content);
 }
 
-static char	*g_last_heredoc_content = NULL;
-
-int	setup_heredoc(t_redir *redir)
+int	setup_heredoc_with_content(char *content)
 {
 	int	pipe_fd[2];
 
-	(void)redir;
-	if (!g_last_heredoc_content)
+	if (!content)
 		return (0);
 	if (pipe(pipe_fd) == -1)
 	{
 		perror("pipe");
 		return (-1);
 	}
-	write(pipe_fd[1], g_last_heredoc_content, ft_strlen(g_last_heredoc_content));
+	write(pipe_fd[1], content, ft_strlen(content));
 	close(pipe_fd[1]);
 	if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
 	{
@@ -61,16 +58,13 @@ int	setup_heredoc(t_redir *redir)
 		return (-1);
 	}
 	close(pipe_fd[0]);
-	free(g_last_heredoc_content);
-	g_last_heredoc_content = NULL;
 	return (0);
 }
 
-int	handle_all_heredocs(t_redir *redir)
+t_redir	*find_last_heredoc(t_redir *redir)
 {
 	t_redir	*current;
 	t_redir	*last_heredoc;
-	char	*content;
 
 	current = redir;
 	last_heredoc = NULL;
@@ -80,6 +74,18 @@ int	handle_all_heredocs(t_redir *redir)
 			last_heredoc = current;
 		current = current->next;
 	}
+	return (last_heredoc);
+}
+
+char	*handle_all_heredocs(t_redir *redir)
+{
+	t_redir	*current;
+	t_redir	*last_heredoc;
+	char	*content;
+	char	*last_content;
+
+	last_heredoc = find_last_heredoc(redir);
+	last_content = NULL;
 	current = redir;
 	while (current)
 	{
@@ -87,11 +93,11 @@ int	handle_all_heredocs(t_redir *redir)
 		{
 			content = fill_heredoc(current);
 			if (current == last_heredoc)
-				g_last_heredoc_content = content;
+				last_content = content;
 			else
 				free(content);
 		}
 		current = current->next;
 	}
-	return (0);
+	return (last_content);
 }

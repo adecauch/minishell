@@ -74,33 +74,15 @@ int	setup_append(t_redir *redir)
 
 int	exec_redir(t_redir *redir)
 {
-	t_redir	*current;
 	t_redir	*last_input;
-	t_redir	*last_output;
+	char	*heredoc_content;
 
-	if (handle_all_heredocs(redir) == -1)
+	heredoc_content = handle_all_heredocs(redir);
+	if (setup_output_redir(redir) == -1)
+	{
+		free(heredoc_content);
 		return (-1);
-	current = redir;
-	last_input = NULL;
-	last_output = NULL;
-	while (current)
-	{
-		if (current->type == IN || current->type == HEREDOC)
-			last_input = current;
-		else if (current->type == OUT || current->type == APPEND)
-			last_output = current;
-		current = current->next;
 	}
-	if (last_output)
-	{
-		if (last_output->type == OUT && setup_out(last_output) == -1)
-			return (-1);
-		else if (last_output->type == APPEND && setup_append(last_output) == -1)
-			return (-1);
-	}
-	if (last_input && last_input->type == IN)
-		return (setup_in(last_input));
-	else if (last_input && last_input->type == HEREDOC)
-		return (setup_heredoc(last_input));
-	return (0);
+	last_input = find_last_input(redir);
+	return (handle_input_redir(last_input, heredoc_content));
 }
