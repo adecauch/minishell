@@ -69,6 +69,7 @@ SRC = src/main.c \
 	  src/exec/exec.c \
 	  src/exec/exec_utility.c \
 	  src/exec/exec_single_cmd.c \
+	  src/exec/exec_pipeline.c \
 	  src/exec/exec_redir.c \
 	  src/exec/exec_redir_utility.c \
 	  src/exec/exec_heredoc.c \

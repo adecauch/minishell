@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:44:50 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/12 22:50:01 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:44:28 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ int	handle_external_cmd(t_cmd *cmd, t_shell *shell, int stdin_fd, int stdout_fd)
 		waitpid(pid, &status, 0);
 	restore_fds_and_close(stdin_fd, stdout_fd);
 	return (WEXITSTATUS(status));
+}
+
+int	count_cmds(t_cmd *cmd)
+{
+	int	count;
+
+	count = 0;
+	while (cmd)
+	{
+		count++;
+		cmd = cmd->next;
+	}
+	return (count);
 }
