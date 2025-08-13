@@ -6,7 +6,7 @@
 #    By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/27 11:48:05 by adecauch          #+#    #+#              #
-#    Updated: 2025/08/12 22:50:01 by adecauch         ###   ########.fr        #
+#    Updated: 2025/08/13 17:59:04 by adecauch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC = src/main.c \
 	  src/exec/exec_utility.c \
 	  src/exec/exec_single_cmd.c \
 	  src/exec/exec_pipeline.c \
+	  src/exec/exec_pipeline_utility.c \
 	  src/exec/exec_redir.c \
 	  src/exec/exec_redir_utility.c \
 	  src/exec/exec_heredoc.c \

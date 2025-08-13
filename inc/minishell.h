@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 17:20:48 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:07:43 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,19 @@
 # include <signal.h>
 # include <termios.h>
 # include <limits.h>
+# include <sys/wait.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "envp.h"
 # include "signals.h"
 # include "builtin.h"
 # include "tokenizer.h"
 # include "ast.h"
+# include "struct_ms.h"
 # include "debug.h"
-
-typedef struct s_shell
-{
-	char	*input;
-	char	**envp;
-	t_token	*head;
-	t_cmd	*root;
-	int		last_status;
-	bool	exit;
-}	t_shell;
-
 # include "exec.h"
+
+/*-----minishell.c-----*/
 
 int		process_input(t_shell *shell);
 int		minishell(t_shell shell);
