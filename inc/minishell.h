@@ -42,7 +42,7 @@ typedef struct s_shell
 
 # include "exec.h"
 
-int		process_input(t_shell shell);
+int		process_input(t_shell *shell);
 int		minishell(t_shell shell);
 
 #endif

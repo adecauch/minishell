@@ -12,16 +12,16 @@
 
 #include "minishell.h"
 
-int	process_input(t_shell shell)
+int	process_input(t_shell *shell)
 {
-	shell.head = tokenizer(shell.input);
-	//print_token_list(shell.head);
-	shell.root = make_ast(shell.head, shell.envp, shell.last_status);
-	//print_ast(shell.root);
-	shell.last_status = exec_ast(&shell);
-	free_token_list(shell.head);
-	free_cmd_list(shell.root);
-	return (shell.last_status);
+	shell->head = tokenizer(shell->input);
+	//print_token_list(shell->head);
+	shell->root = make_ast(shell->head, shell->envp, shell->last_status);
+	//print_ast(shell->root);
+	shell->last_status = exec_ast(shell);
+	free_token_list(shell->head);
+	free_cmd_list(shell->root);
+	return (shell->last_status);
 }
 
 int	minishell(t_shell shell)
@@ -37,7 +37,7 @@ int	minishell(t_shell shell)
 		}
 		if (*shell.input)
 			add_history(shell.input);
-		shell.last_status = process_input(shell);
+		shell.last_status = process_input(&shell);
 		free(shell.input);
 	}
 	return (shell.last_status);
