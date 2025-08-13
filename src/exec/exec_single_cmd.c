@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:43:33 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/12 22:50:01 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:20:48 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int	exec_builtin(t_cmd *cmd, t_shell *shell)
 	if (ft_strncmp(cmd->cmd_args[0], "env", 4) == 0)
 		return (bi_env(cmd->cmd_args, shell->envp));
 	if (ft_strncmp(cmd->cmd_args[0], "exit", 5) == 0)
-		return (bi_exit(cmd->cmd_args, &shell->last_status));
+		return (bi_exit(cmd->cmd_args, &shell->exit));
 	return (127);
 }

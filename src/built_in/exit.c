@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 19:12:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 19:55:47 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:18:34 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,29 @@ static bool	is_numeric_arg(char *str)
 	return (1);
 }
 
-int	bi_exit(char **cmd_args, int *last_status)
+int	bi_exit(char **cmd_args, bool *exit)
 {
-	int	exit_code;
-
 	printf("exit\n");
 	if (!cmd_args[1])
-		exit_code = *last_status;
+	{
+		*exit = 1;
+		return (0);
+	}
 	else if (!is_numeric_arg(cmd_args[1]))
 	{
 		printf("minishell: exit: %s: numeric argument required\n", cmd_args[1]);
-		*last_status = 2;
+		*exit = 0;
 		return (2);
 	}
 	else if (cmd_args[2])
 	{
 		printf("minishell: exit: too many arguments\n");
-		*last_status = 2;
+		*exit = 0;
 		return (2);
 	}
 	else
-		exit_code = ft_atoi(cmd_args[1]) % 256;
-	*last_status = exit_code;
-	return (-666);
+	{
+		*exit = 1;
+		return (ft_atoi(cmd_args[1]) % 256);
+	}
 }

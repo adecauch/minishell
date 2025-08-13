@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 03:57:31 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:22:35 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	minishell(t_shell shell)
 			add_history(shell.input);
 		shell.last_status = process_input(&shell);
 		free(shell.input);
+		if (shell.exit)
+		{
+			shell.exit = 0;
+			break;
+		}
 	}
 	return (shell.last_status);
 }

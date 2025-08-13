@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:10:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/18 18:43:10 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:22:35 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv, char **envp)
 
 	shell.envp = copy_envp(envp);
 	shell.last_status = 0;
+	shell.exit = 0;
 	(void)argc;
 	(void)argv;
 	ret = minishell(shell);

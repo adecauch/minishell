@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 03:57:55 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:20:48 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_shell
 	t_token	*head;
 	t_cmd	*root;
 	int		last_status;
+	bool	exit;
 }	t_shell;
 
 # include "exec.h"
