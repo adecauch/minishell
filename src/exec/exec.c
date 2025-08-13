@@ -15,57 +15,23 @@
 int	exec_single_cmd(t_shell *shell)
 {
 	t_cmd	*cmd;
-	pid_t	pid;
-	int		status;
-	char	*cmd_path;
-	int		original_stdin;
-	int		original_stdout;
+	int		original_fds[2];
 
 	cmd = shell->root;
 	if (!cmd->cmd_args || !cmd->cmd_args[0])
 		return (0);
-	original_stdin = dup(STDIN_FILENO);
-	original_stdout = dup(STDOUT_FILENO);
+	original_fds[0] = dup(STDIN_FILENO);
+	original_fds[1] = dup(STDOUT_FILENO);
 	if (exec_redir(cmd->redir) == -1)
 	{
-		close(original_stdin);
-		close(original_stdout);
+		close(original_fds[0]);
+		close(original_fds[1]);
 		return (1);
 	}
 	if (cmd->is_builtin)
-	{
-		status = exec_builtin(cmd, shell);
-		dup2(original_stdout, STDOUT_FILENO);
-		dup2(original_stdin, STDIN_FILENO);
-		close(original_stdin);
-		close(original_stdout);
-		return (status);
-	}
-	cmd_path = find_cmd_path(cmd->cmd_args[0], shell->envp);
-	if (!cmd_path)
-	{
-		dup2(original_stdout, STDOUT_FILENO);
-		dup2(original_stdin, STDIN_FILENO);
-		close(original_stdin);
-		close(original_stdout);
-		return (command_not_found(cmd->cmd_args[0]));
-	}
-	pid = fork();
-	if (pid == 0)
-	{
-		execve(cmd_path, cmd->cmd_args, shell->envp);
-		perror("execve failed");
-		free(cmd_path);
-		exit(127);
-	}
-	free(cmd_path);
-	if (pid > 0)
-		waitpid(pid, &status, 0);
-	dup2(original_stdout, STDOUT_FILENO);
-	dup2(original_stdin, STDIN_FILENO);
-	close(original_stdin);
-	close(original_stdout);
-	return (WEXITSTATUS(status));
+		return (handle_builtin_exec(cmd, shell, original_fds[0],
+				original_fds[1]));
+	return (handle_external_cmd(cmd, shell, original_fds[0], original_fds[1]));
 }
 
 int	exec_pipeline(t_shell *shell)

@@ -12,28 +12,23 @@
 
 #include "minishell.h"
 
-char	*find_cmd_path(char *cmd, char **envp)
+static char	*check_absolute_path(char *cmd)
 {
-	char	*path_env;
-	char	**paths;
-	char	*full_path;
-	char	*tmp;
-	int		i;
-
-	if (!cmd)
-		return (NULL);
 	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, F_OK | X_OK) == 0)
 			return (ft_strdup(cmd));
 		return (NULL);
 	}
-	path_env = get_env_value("PATH", envp, 0);
-	if (!path_env)
-		return (NULL);
-	paths = ft_split(path_env, ':');
-	if (!paths)
-		return (NULL);
+	return (cmd);
+}
+
+static char	*search_in_paths(char *cmd, char **paths)
+{
+	char	*full_path;
+	char	*tmp;
+	int		i;
+
 	i = 0;
 	while (paths[i])
 	{
@@ -53,6 +48,26 @@ char	*find_cmd_path(char *cmd, char **envp)
 	}
 	free_str_array(paths);
 	return (NULL);
+}
+
+char	*find_cmd_path(char *cmd, char **envp)
+{
+	char	*path_env;
+	char	**paths;
+	char	*result;
+
+	if (!cmd)
+		return (NULL);
+	result = check_absolute_path(cmd);
+	if (result != cmd)
+		return (result);
+	path_env = get_env_value("PATH", envp, 0);
+	if (!path_env)
+		return (NULL);
+	paths = ft_split(path_env, ':');
+	if (!paths)
+		return (NULL);
+	return (search_in_paths(cmd, paths));
 }
 
 int	exec_builtin(t_cmd *cmd, t_shell *shell)

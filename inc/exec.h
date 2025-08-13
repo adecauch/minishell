@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 04:49:49 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 01:27:20 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 03:43:31 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int		exec_ast(t_shell *shell);
 /*-----exec_utility.c-----*/
 
 int		command_not_found(char *cmd);
+int		handle_builtin_exec(t_cmd *cmd, t_shell *shell, int stdin_fd, int stdout_fd);
+void	restore_fds_and_close(int stdin_fd, int stdout_fd);
+int		handle_external_cmd(t_cmd *cmd, t_shell *shell, int stdin_fd, int stdout_fd);
 
 /*-----exec_single_cmd.c-----*/
 
