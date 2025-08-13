@@ -6,21 +6,22 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/11 05:34:43 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 03:57:31 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	process_input(t_shell shell)
+int	process_input(t_shell shell)
 {
 	shell.head = tokenizer(shell.input);
 	//print_token_list(shell.head);
 	shell.root = make_ast(shell.head, shell.envp, shell.last_status);
 	//print_ast(shell.root);
-	exec_ast(&shell);
+	shell.last_status = exec_ast(&shell);
 	free_token_list(shell.head);
 	free_cmd_list(shell.root);
+	return (shell.last_status);
 }
 
 int	minishell(t_shell shell)
@@ -36,8 +37,8 @@ int	minishell(t_shell shell)
 		}
 		if (*shell.input)
 			add_history(shell.input);
-		process_input(shell);
+		shell.last_status = process_input(shell);
 		free(shell.input);
 	}
-	return (0);
+	return (shell.last_status);
 }

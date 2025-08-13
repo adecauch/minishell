@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:23:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/11 04:54:42 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 03:57:55 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_shell
 
 # include "exec.h"
 
-void	process_input(t_shell shell);
+int		process_input(t_shell shell);
 int		minishell(t_shell shell);
 
 #endif

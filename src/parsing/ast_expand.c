@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:21:12 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 16:21:18 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/13 04:13:32 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,3 @@ char	*expand_str(char *str, char **envp, int last_status)
 	}
 	return (res);
 }
-/*
-int	main(int argc, char **argv, char **envp)
-{
-	printf("%s\n", expand_str("$USER test $USER $& $?", envp, 0));
-}
-cc src/parsing/ast_expand.c src/libft/ft_strdup.c src/libft/ft_substr.c
-src/libft/ft_strncmp.c src/libft/ft_strjoin.c src/libft/ft_strlen.c
-src/libft/ft_itoa.c src/libft/ft_strlcpy.c
-*/
