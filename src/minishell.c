@@ -34,31 +34,31 @@ static bool	is_only_space(char *input)
 	return (1);
 }
 
-int	minishell(t_shell shell)
+int	minishell(t_shell *shell)
 {
 	init_signals();
 	while (1)
 	{
-		shell.input = readline("minishell> ");
-		if (!shell.input)
+		shell->input = readline("minishell> ");
+		if (!shell->input)
 		{
 			printf("exit\n");
 			break ;
 		}
-		if (*shell.input)
-			add_history(shell.input);
-		if (is_only_space(shell.input))
+		if (*shell->input)
+			add_history(shell->input);
+		if (is_only_space(shell->input))
 		{
-			free(shell.input);
+			free(shell->input);
 			continue ;
 		}
-		shell.last_status = process_input(&shell);
-		free(shell.input);
-		if (shell.exit)
+		shell->last_status = process_input(shell);
+		free(shell->input);
+		if (shell->exit)
 		{
-			shell.exit = 0;
+			shell->exit = 0;
 			break ;
 		}
 	}
-	return (shell.last_status);
+	return (shell->last_status);
 }

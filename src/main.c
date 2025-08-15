@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	shell.exit = 0;
 	(void)argc;
 	(void)argv;
-	ret = minishell(shell);
+	ret = minishell(&shell);
 	free_str_array(shell.envp);
 	return (ret);
 }

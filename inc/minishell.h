@@ -38,6 +38,6 @@
 /*-----minishell.c-----*/
 
 int		process_input(t_shell *shell);
-int		minishell(t_shell shell);
+int		minishell(t_shell *shell);
 
 #endif
