@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 22:43:33 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 17:20:48 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/15 20:10:22 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ char	*find_cmd_path(char *cmd, char **envp)
 	if (!path_env)
 		return (NULL);
 	paths = ft_split(path_env, ':');
+	free(path_env);
 	if (!paths)
 		return (NULL);
 	return (search_in_paths(cmd, paths));
