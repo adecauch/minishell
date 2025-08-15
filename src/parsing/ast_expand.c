@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:21:12 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 04:13:32 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/15 19:00:07 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	is_valid_var_char(char c, int pos)
 char	*expand_str(char *str, char **envp, int last_status)
 {
 	char	*res;
+	char	*name;
 	int		i;
 	int		start;
 
@@ -69,9 +70,9 @@ char	*expand_str(char *str, char **envp, int last_status)
 			start = i;
 			while (str[i] && is_valid_var_char(str[i], i - start))
 				i++;
-			res = join_and_free(res,
-					get_env_value(ft_substr(str, start, i - start),
-						envp, last_status));
+			name = ft_substr(str, start, i - start);
+			res = join_and_free(res, get_env_value(name, envp, last_status));
+			free(name);
 		}
 		else
 			res = join_and_free(res, ft_substr(str, i++, 1));
