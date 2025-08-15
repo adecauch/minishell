@@ -12,6 +12,26 @@
 
 #include "minishell.h"
 
+static void	free_partial_array(char **arr, int count)
+{
+	while (--count >= 0)
+		free(arr[count]);
+	free(arr);
+}
+
+static void	free_all_entries(char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		free(envp[i]);
+		i++;
+	}
+	free(envp);
+}
+
 char	**create_reduced_envp(char **envp, int count, int skip_index)
 {
 	char	**new_envp;
@@ -27,7 +47,9 @@ char	**create_reduced_envp(char **envp, int count, int skip_index)
 	{
 		if (i != skip_index)
 		{
-			new_envp[j] = envp[i];
+			new_envp[j] = ft_strdup(envp[i]);
+			if (!new_envp[j])
+				return (free_partial_array(new_envp, j), NULL);
 			j++;
 		}
 		i++;
@@ -38,6 +60,6 @@ char	**create_reduced_envp(char **envp, int count, int skip_index)
 
 void	remove_env_entry(char ***envp, int index)
 {
-	free((*envp)[index]);
-	free(*envp);
+	free_all_entries(*envp);
+	(void)index;
 }
