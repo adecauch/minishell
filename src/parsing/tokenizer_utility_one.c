@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 15:20:36 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 04:06:23 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 05:17:03 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ bool	contains_invalid_char(char *str)
 	while (str[i])
 	{
 		if (str[i] == '&' || str[i] == ';' || str[i] == '`' || str[i] == '\\'
-			|| str[i] == '*' || str[i] == '?' || str[i] == '(' || str[i] == ')'
-			|| str[i] == '{' || str[i] == '}' || str[i] == '&')
+			|| str[i] == '*' || str[i] == '(' || str[i] == ')' || str[i] == '{'
+			|| str[i] == '}' || str[i] == '&')
 			return (1);
 		i++;
 	}
