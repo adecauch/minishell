@@ -68,6 +68,26 @@ static void	process_heredocs_in_pipeline(t_cmd *cmd)
 	}
 }
 
+static void	close_heredoc_fds(t_cmd *cmd)
+{
+	t_redir	*redir;
+
+	while (cmd)
+	{
+		redir = cmd->redir;
+		while (redir)
+		{
+			if (redir->type == HEREDOC && redir->heredoc_fd != -1)
+			{
+				close(redir->heredoc_fd);
+				redir->heredoc_fd = -1;
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
+	}
+}
+
 int	exec_pipeline(t_shell *shell)
 {
 	t_pipeline	p;
@@ -79,11 +99,13 @@ int	exec_pipeline(t_shell *shell)
 		return (init_result);
 	if (execute_all_cmds(&p, shell) == -1)
 	{
+		close_heredoc_fds(shell->root);
 		close_all_pipes(p.pipes, p.cmd_count);
 		free(p.pipes);
 		free(p.pids);
 		return (1);
 	}
+	close_heredoc_fds(shell->root);
 	close_all_pipes(p.pipes, p.cmd_count);
 	free(p.pipes);
 	p.last_status = wait_all_cmds(&p);
