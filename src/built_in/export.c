@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:04:02 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 17:47:20 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 20:07:44 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	bi_export(char **cmd_args, char ***envp)
 		}
 		name = extract_name(cmd_args[i]);
 		value = extract_value(cmd_args[i]);
-		set_env_var(envp, name, value);
+		if (value)
+			set_env_var(envp, name, value);
 		free(name);
 		if (value)
 			free(value);
