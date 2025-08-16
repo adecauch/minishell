@@ -77,46 +77,14 @@ t_redir	*find_last_heredoc(t_redir *redir)
 	return (last_heredoc);
 }
 
-static char	*read_from_temp_file(void)
-{
-	int		fd;
-	char	buffer[1024];
-	int		bytes;
-	char	*content;
-
-	fd = open("/tmp/minishell_heredoc", O_RDONLY);
-	bytes = read(fd, buffer, 1023);
-	buffer[bytes] = '\0';
-	content = ft_strdup(buffer);
-	close(fd);
-	unlink("/tmp/minishell_heredoc");
-	return (content);
-}
-
 char	*handle_all_heredocs(t_redir *redir)
 {
-	t_redir	*current;
 	t_redir	*last_heredoc;
-	char	*content;
-	char	*last_content;
 
 	last_heredoc = find_last_heredoc(redir);
-	last_content = NULL;
-	current = redir;
-	while (current)
-	{
-		if (current->type == HEREDOC)
-		{
-			if (access("/tmp/minishell_heredoc", F_OK) == 0)
-				content = read_from_temp_file();
-			else
-				content = fill_heredoc(current);
-			if (current == last_heredoc)
-				last_content = content;
-			else
-				free(content);
-		}
-		current = current->next;
-	}
-	return (last_content);
+	if (!last_heredoc)
+		return (NULL);
+	if (last_heredoc->heredoc_fd != -1)
+		return (ft_strdup(""));
+	return (fill_heredoc(last_heredoc));
 }

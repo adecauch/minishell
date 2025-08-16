@@ -72,6 +72,20 @@ t_redir	*find_last_input(t_redir *redir)
 	return (last_input);
 }
 
+static int	setup_heredoc_fd(t_redir *last_input, char *heredoc_content)
+{
+	if (dup2(last_input->heredoc_fd, STDIN_FILENO) == -1)
+	{
+		perror("dup2");
+		close(last_input->heredoc_fd);
+		free(heredoc_content);
+		return (-1);
+	}
+	close(last_input->heredoc_fd);
+	free(heredoc_content);
+	return (0);
+}
+
 int	handle_input_redir(t_redir *last_input, char *heredoc_content)
 {
 	if (last_input && last_input->type == IN)
@@ -81,12 +95,17 @@ int	handle_input_redir(t_redir *last_input, char *heredoc_content)
 	}
 	else if (last_input && last_input->type == HEREDOC)
 	{
-		if (setup_heredoc_with_content(heredoc_content) == -1)
+		if (last_input->heredoc_fd != -1)
+			return (setup_heredoc_fd(last_input, heredoc_content));
+		else
 		{
+			if (setup_heredoc_with_content(heredoc_content) == -1)
+			{
+				free(heredoc_content);
+				return (-1);
+			}
 			free(heredoc_content);
-			return (-1);
 		}
-		free(heredoc_content);
 	}
 	else
 		free(heredoc_content);

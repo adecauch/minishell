@@ -26,6 +26,7 @@ typedef struct s_redir
 	t_rtype			type;
 	char			*file;
 	bool			ex_here;
+	int				heredoc_fd;
 	struct s_redir	*next;
 }	t_redir;
 

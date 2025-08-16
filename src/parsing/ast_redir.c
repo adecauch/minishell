@@ -22,6 +22,7 @@ t_redir	*new_redir(t_rtype type, char *file, bool ex_here)
 	redir->type = type;
 	redir->file = ft_strdup(file);
 	redir->ex_here = ex_here;
+	redir->heredoc_fd = -1;
 	redir->next = NULL;
 	return (redir);
 }

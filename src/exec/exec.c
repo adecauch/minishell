@@ -44,7 +44,7 @@ static void	process_heredocs_in_pipeline(t_cmd *cmd)
 {
 	t_redir	*redir;
 	char	*content;
-	int		fd;
+	int		pipe_fd[2];
 
 	while (cmd)
 	{
@@ -54,12 +54,14 @@ static void	process_heredocs_in_pipeline(t_cmd *cmd)
 			if (redir->type == HEREDOC)
 			{
 				content = fill_heredoc(redir);
-				fd = open("/tmp/minishell_heredoc",
-						O_WRONLY | O_CREAT | O_TRUNC, 0644);
-				write(fd, content, ft_strlen(content));
-				close(fd);
+				pipe(pipe_fd);
+				write(pipe_fd[1], content, ft_strlen(content));
+				close(pipe_fd[1]);
+				redir->heredoc_fd = pipe_fd[0];
 				free(content);
 			}
+			else
+				redir->heredoc_fd = -1;
 			redir = redir->next;
 		}
 		cmd = cmd->next;
