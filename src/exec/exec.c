@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 04:51:17 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 17:58:32 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 07:36:46 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	exec_pipeline(t_shell *shell)
 int	exec_ast(t_shell *shell)
 {
 	if (!shell->root)
-		return (0);
+		return (shell->last_status);
 	if (!shell->root->next)
 		return (exec_single_cmd(shell));
 	return (exec_pipeline(shell));

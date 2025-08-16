@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 21:15:38 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 23:21:12 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 07:42:28 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,12 @@
 
 int	process_input(t_shell *shell)
 {
-	shell->head = tokenizer(shell->input);
+	shell->head = tokenizer(shell->input, &shell->last_status);
 	shell->root = make_ast(shell->head, shell->envp, shell->last_status);
 	shell->last_status = exec_ast(shell);
 	free_token_list(shell->head);
 	free_cmd_list(shell->root);
 	return (shell->last_status);
-}
-
-static bool	is_only_space(char *input)
-{
-	while (*input)
-	{
-		if (*input != ' ' && *input != '\t' && *input != '\r'
-			&& *input != '\n' && *input != '\r' && *input != '\f')
-			return (0);
-		input++;
-	}
-	return (1);
 }
 
 int	minishell(t_shell *shell)
@@ -47,11 +35,6 @@ int	minishell(t_shell *shell)
 		}
 		if (*shell->input)
 			add_history(shell->input);
-		if (is_only_space(shell->input))
-		{
-			free(shell->input);
-			continue ;
-		}
 		shell->last_status = process_input(shell);
 		free(shell->input);
 		if (shell->exit)

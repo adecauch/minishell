@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:53:45 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/21 19:49:23 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 07:27:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	check_token_list(t_token *head)
 	return (0);
 }
 
-t_token	*tokenizer(char *input)
+t_token	*tokenizer(char *input, int *last_status)
 {
 	int		i;
 	t_token	*head;
@@ -106,6 +106,7 @@ t_token	*tokenizer(char *input)
 	validate_token_list(head);
 	if (check_token_list(head))
 	{
+		*last_status = 2;
 		free_token_list(head);
 		return (NULL);
 	}

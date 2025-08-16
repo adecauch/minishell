@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 22:00:55 by adecauch          #+#    #+#             */
-/*   Updated: 2025/07/17 22:48:11 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 07:27:08 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	check_unclosed_quotes(char *input);
 void	handle_token(char *input, int *i, t_token **head);
 void	validate_token_list(t_token *head);
 bool	check_token_list(t_token *head);
-t_token	*tokenizer(char *input);
+t_token	*tokenizer(char *input, int *last_status);
 
 /*-----tokenizer_utility_one.c-----*/
 
