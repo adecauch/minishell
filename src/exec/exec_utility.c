@@ -46,11 +46,12 @@ int	handle_external_cmd(t_cmd *cmd, t_shell *shell, int stdin_fd, int stdout_fd)
 
 	cmd_path = find_cmd_path(cmd->cmd_args[0], shell->envp);
 	if (!cmd_path)
-	{
-		restore_fds_and_close(stdin_fd, stdout_fd);
-		return (command_not_found(cmd->cmd_args[0]));
-	}
+		return (restore_fds_and_close(stdin_fd, stdout_fd),
+			command_not_found(cmd->cmd_args[0]));
 	pid = fork();
+	if (pid == -1)
+		return (perror("fork"), free(cmd_path),
+			restore_fds_and_close(stdin_fd, stdout_fd), 1);
 	if (pid == 0)
 	{
 		execve(cmd_path, cmd->cmd_args, shell->envp);
@@ -59,8 +60,7 @@ int	handle_external_cmd(t_cmd *cmd, t_shell *shell, int stdin_fd, int stdout_fd)
 		exit(127);
 	}
 	free(cmd_path);
-	if (pid > 0)
-		waitpid(pid, &status, 0);
+	waitpid(pid, &status, 0);
 	restore_fds_and_close(stdin_fd, stdout_fd);
 	return (WEXITSTATUS(status));
 }
