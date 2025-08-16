@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 18:04:02 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/16 20:07:44 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:56:29 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,33 @@ static char	*extract_name(char *arg)
 		return (ft_strdup(arg));
 }
 
+static char	*remove_quotes(char *str)
+{
+	int		len;
+
+	if (!str)
+		return (NULL);
+	len = ft_strlen(str);
+	if (len >= 2 && ((str[0] == '"' && str[len - 1] == '"')
+			|| (str[0] == '\'' && str[len - 1] == '\'')))
+		return (ft_substr(str, 1, len - 2));
+	return (ft_strdup(str));
+}
+
 static char	*extract_value(char *arg)
 {
 	char	*equal_pos;
+	char	*value;
+	char	*cleaned_value;
 
 	equal_pos = ft_strchr(arg, '=');
 	if (equal_pos)
-		return (ft_strdup(equal_pos + 1));
+	{
+		value = ft_strdup(equal_pos + 1);
+		cleaned_value = remove_quotes(value);
+		free(value);
+		return (cleaned_value);
+	}
 	else
 		return (NULL);
 }
