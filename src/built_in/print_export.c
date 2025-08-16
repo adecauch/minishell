@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 17:27:58 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/16 21:22:39 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 21:28:57 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	print_export(char **envp)
 	while (envp_s[i])
 	{
 		printf("export %s\n", envp_s[i]);
+		free(envp_s[i]);
 		i++;
 	}
 	free(envp_s);
