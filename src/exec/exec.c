@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 04:51:17 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/16 22:22:51 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/16 23:42:40 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,38 @@ int	exec_single_cmd(t_shell *shell)
 	return (handle_external_cmd(cmd, shell, original_fds[0], original_fds[1]));
 }
 
+static void	process_heredocs_in_pipeline(t_cmd *cmd)
+{
+	t_redir	*redir;
+	char	*content;
+	int		fd;
+
+	while (cmd)
+	{
+		redir = cmd->redir;
+		while (redir)
+		{
+			if (redir->type == HEREDOC)
+			{
+				content = fill_heredoc(redir);
+				fd = open("/tmp/minishell_heredoc",
+						O_WRONLY | O_CREAT | O_TRUNC, 0644);
+				write(fd, content, ft_strlen(content));
+				close(fd);
+				free(content);
+			}
+			redir = redir->next;
+		}
+		cmd = cmd->next;
+	}
+}
+
 int	exec_pipeline(t_shell *shell)
 {
 	t_pipeline	p;
 	int			init_result;
 
+	process_heredocs_in_pipeline(shell->root);
 	init_result = init_pipeline(&p, shell);
 	if (init_result <= 0)
 		return (init_result);
