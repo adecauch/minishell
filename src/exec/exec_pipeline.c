@@ -54,31 +54,36 @@ int	wait_all_cmds(t_pipeline *p)
 	return (p->last_status);
 }
 
-int	exec_pipeline_cmd(t_cmd *cmd, t_shell *shell, t_pipeline *p)
+static void	exec_child_process(t_cmd *cmd, t_shell *shell, t_pipeline *p)
 {
 	char	*cmd_path;
+
+	setup_child_pipes(p->pipes, p->cmd_index, p->cmd_count);
+	close_all_pipes(p->pipes, p->cmd_count);
+	close_unused_heredoc_fds(shell->root, cmd);
+	if (exec_redir(cmd->redir) == -1)
+		exit(1);
+	if (cmd->is_builtin)
+		exit(exec_builtin(cmd, shell));
+	cmd_path = find_cmd_path(cmd->cmd_args[0], shell->envp);
+	if (!cmd_path)
+	{
+		command_not_found(cmd->cmd_args[0]);
+		exit(127);
+	}
+	execve(cmd_path, cmd->cmd_args, shell->envp);
+	free(cmd_path);
+	exit(127);
+}
+
+int	exec_pipeline_cmd(t_cmd *cmd, t_shell *shell, t_pipeline *p)
+{
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
 		return (-1);
 	if (pid == 0)
-	{
-		setup_child_pipes(p->pipes, p->cmd_index, p->cmd_count);
-		close_all_pipes(p->pipes, p->cmd_count);
-		if (exec_redir(cmd->redir) == -1)
-			exit(1);
-		if (cmd->is_builtin)
-			exit(exec_builtin(cmd, shell));
-		cmd_path = find_cmd_path(cmd->cmd_args[0], shell->envp);
-		if (!cmd_path)
-		{
-			command_not_found(cmd->cmd_args[0]);
-			exit(127);
-		}
-		execve(cmd_path, cmd->cmd_args, shell->envp);
-		free(cmd_path);
-		exit(127);
-	}
+		exec_child_process(cmd, shell, p);
 	return (pid);
 }

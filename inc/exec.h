@@ -55,6 +55,7 @@ int		exec_pipeline_cmd(t_cmd *cmd, t_shell *shell, t_pipeline *p);
 /*-----exec_pipeline_utility.c-----*/
 
 int		create_pipes(int **pipes, int cmd_count);
+void	close_unused_heredoc_fds(t_cmd *all_cmds, t_cmd *current_cmd);
 void	setup_child_pipes(int *pipes, int cmd_index, int cmd_count);
 void	close_all_pipes(int *pipes, int cmd_count);
 

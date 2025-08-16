@@ -12,6 +12,39 @@
 
 #include "minishell.h"
 
+static bool	is_current_cmd_redir(t_cmd *current_cmd, t_redir *target_redir)
+{
+	t_redir	*current_redir;
+
+	current_redir = current_cmd->redir;
+	while (current_redir && current_redir != target_redir)
+		current_redir = current_redir->next;
+	return (current_redir != NULL);
+}
+
+void	close_unused_heredoc_fds(t_cmd *all_cmds, t_cmd *current_cmd)
+{
+	t_redir	*redir;
+
+	while (all_cmds)
+	{
+		redir = all_cmds->redir;
+		while (redir)
+		{
+			if (redir->type == HEREDOC && redir->heredoc_fd != -1)
+			{
+				if (!is_current_cmd_redir(current_cmd, redir))
+				{
+					close(redir->heredoc_fd);
+					redir->heredoc_fd = -1;
+				}
+			}
+			redir = redir->next;
+		}
+		all_cmds = all_cmds->next;
+	}
+}
+
 int	create_pipes(int **pipes, int cmd_count)
 {
 	int	i;
