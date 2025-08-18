@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 15:16:13 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/10 20:31:47 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/18 03:44:51 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	bi_cd(char **cmd_args, char ***envp)
 	char	*target_dir;
 	char	*old_pwd;
 
-	if (cmd_args[2])
-		return (printf("minishell: cd: too many arguments\n"), 2);
 	if (!cmd_args[1])
 		target_dir = get_home(*envp);
+	else if (cmd_args[2])
+		return (printf("minishell: cd: too many arguments\n"), 2);
 	else
 		target_dir = cmd_args[1];
 	if (!target_dir)
