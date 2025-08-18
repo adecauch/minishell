@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:27:29 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 17:20:48 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/18 04:25:41 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		bi_env(char **cmd_args, char **envp);
 
 /*-----exit.c-----*/
 
-int		bi_exit(char **cmd_args, bool *exit);
+int		bi_exit(char **cmd_args, int last_status, bool *exit);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adecauch <adecauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 19:12:00 by adecauch          #+#    #+#             */
-/*   Updated: 2025/08/13 17:18:34 by adecauch         ###   ########.fr       */
+/*   Updated: 2025/08/18 04:26:20 by adecauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static bool	is_numeric_arg(char *str)
 	return (1);
 }
 
-int	bi_exit(char **cmd_args, bool *exit)
+int	bi_exit(char **cmd_args, int last_status, bool *exit)
 {
 	printf("exit\n");
 	if (!cmd_args[1])
 	{
 		*exit = 1;
-		return (0);
+		return (last_status);
 	}
 	else if (!is_numeric_arg(cmd_args[1]))
 	{
