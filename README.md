@@ -6,11 +6,7 @@
 
 [English](#english) | [Français](#francais)
 
-<!-- Demo: once assets/demo.gif has been added, replace this comment with:
-![Minishell demo / Démonstration de Minishell](assets/demo.gif)
-Keep the image here, above the English section. / Conserver l’image ici, avant la section anglaise.
--->
-
+![Minishell Demo](minishell.gif)
 ---
 
 <a id="english"></a>
